@@ -14,11 +14,15 @@ const routes = [
     },
     {
         path: '/book',
-        component: bookApp
+        component: missBook
     },
     {
-        path: '/book/:bookId',
-        component: bookDetails
+        path: '/email',
+        component: misterEmail
+    },
+    {
+        path: '/keep',
+        component: missKeep
     },
 ]
 
