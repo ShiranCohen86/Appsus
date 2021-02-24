@@ -17,8 +17,8 @@ export default {
     },
     methods: {
         toggleIsRead() {
-            this.imgSrc = this.isRead ? '../css/apps/mister-mail/img/open-mail.png' : '../css/apps/mister-mail/img/close-mail.png';
             this.isRead = !this.isRead
+            this.imgSrc = this.isRead ? '../css/apps/mister-mail/img/open-mail.png' : '../css/apps/mister-mail/img/close-mail.png';
         },
     },
     created() {
