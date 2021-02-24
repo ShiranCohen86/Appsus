@@ -10,14 +10,14 @@ const myMails = [
         body: 'Pick up!',
         isRead: false,
         sentAt: 1551133930591
-    }
+    },
     {
         id: 2,
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
         sentAt: 1551133930592
-    }
+    },
     {
         id: 3,
         subject: 'Wassap?',
