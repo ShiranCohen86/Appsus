@@ -10,7 +10,7 @@ const routes = [
         component: homePage,
     },
     // {
-    //     path: '/miss-book',
+    //     path: '/58 or',
     //     component: missBook
     // },
     {
