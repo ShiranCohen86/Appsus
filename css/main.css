@@ -1,7 +1,8 @@
 
+@import url("./lib/normalize.css");
 @import url("./cmps/appSus-header.cmp.css");
 
-@import url("./apps/mister-mail/cmps/appSus-mail.cmp.css");
+@import url("./apps/mister-mail/cmps/cmps-style.css");
 
 body{
     background-color: rgb(176, 194, 173);

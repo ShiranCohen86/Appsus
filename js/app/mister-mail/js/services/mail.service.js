@@ -22,7 +22,7 @@ const myMails = [
         id: 3,
         subject: 'Wassap?',
         body: 'Pick up!',
-        isRead: false,
+        isRead: true,
         sentAt: 1551133930593
     }
 ]
