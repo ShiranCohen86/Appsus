@@ -3,13 +3,27 @@ import { utilService } from './util-service.js'
 import { storageService } from './async-storage-service.js'
 
 const MAILS_KEY = 'mail'
-const gMails = [
+const myMails = [
     {
         id: 1,
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
-        sentAt: 1551133930594
+        sentAt: 1551133930591
+    }
+    {
+        id: 2,
+        subject: 'Wassap?',
+        body: 'Pick up!',
+        isRead: false,
+        sentAt: 1551133930592
+    }
+    {
+        id: 3,
+        subject: 'Wassap?',
+        body: 'Pick up!',
+        isRead: false,
+        sentAt: 1551133930593
     }
 ]
 
@@ -25,8 +39,8 @@ function getMails() {
     return storageService.query(MAILS_KEY)
         .then(mails => {
             if (!mails.length) {
-                mails = gMails;
-                utilService.saveToStorage(MAILS_KEY, gMails);
+                mails = myMails;
+                utilService.saveToStorage(MAILS_KEY, myMails);
             }
             return mails;
         });
