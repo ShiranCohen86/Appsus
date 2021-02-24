@@ -13,7 +13,6 @@ const options = {
     components: {
         appHeader,
         userMsg,
-    
     }
 }
 
