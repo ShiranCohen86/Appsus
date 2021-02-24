@@ -2,6 +2,7 @@
 import { utilService } from './util-service.js'
 import { storageService } from './async-storage-service.js'
 
+const MAILS_KEY = 'mail'
 const gMails = [
     {
         id: 1,
@@ -11,17 +12,16 @@ const gMails = [
         sentAt: 1551133930594
     }
 ]
-const MAILS_KEY = 'mail'
 
 export const mailService = {
-    query,
+    getMails,
     getCurrencySymbol,
     getById,
     save,
     remove
 }
 
-function query() {
+function getMails() {
     return storageService.query(MAILS_KEY)
         .then(mails => {
             if (!mails.length) {
