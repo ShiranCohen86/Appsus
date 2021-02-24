@@ -8,7 +8,7 @@ export default {
     <ul class="gallery-mails">
         <li v-for="mail in mails" :key="mail.id" class="mail-card">
             <mail-preview :mail="mail" />
-            {{mail}}
+            <!-- {{mail}} -->
             <button @click="remove(mail.id)">x</button>
         </li>
     </ul>
