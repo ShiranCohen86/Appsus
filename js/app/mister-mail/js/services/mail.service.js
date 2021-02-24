@@ -22,9 +22,65 @@ const myMails = [
         id: 3,
         subject: 'Wassap?',
         body: 'Pick up!',
-        isRead: false,
+        isRead: true,
         sentAt: 1551133930593
-    }
+    },
+    {
+        id: 4,
+        subject: 'Wassap?',
+        body: 'Pick up!',
+        isRead: true,
+        sentAt: 1551133930593
+    },
+    {
+        id: 5,
+        subject: 'Wassap?',
+        body: 'Pick up!',
+        isRead: true,
+        sentAt: 1551133930593
+    },
+    {
+        id: 6,
+        subject: 'Wassap?',
+        body: 'Pick up!',
+        isRead: true,
+        sentAt: 1551133930593
+    },
+    {
+        id: 7,
+        subject: 'Wassap?',
+        body: 'Pick up!',
+        isRead: true,
+        sentAt: 1551133930593
+    },
+    {
+        id: 8,
+        subject: 'Wassap?',
+        body: 'Pick up!',
+        isRead: true,
+        sentAt: 1551133930593
+    },
+    {
+        id: 9,
+        subject: 'Wassap?',
+        body: 'Pick up!',
+        isRead: true,
+        sentAt: 1551133930593
+    },
+    {
+        id: 10,
+        subject: 'Wassap?',
+        body: 'Pick up!',
+        isRead: true,
+        sentAt: 1551133930593
+    },
+    {
+        id: 11,
+        subject: 'Wassap?',
+        body: 'Pick up!',
+        isRead: true,
+        sentAt: 1551133930593
+    },
 ]
 
 export const mailService = {

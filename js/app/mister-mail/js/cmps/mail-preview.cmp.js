@@ -1,12 +1,30 @@
+// import mailListCmp from "./mail-list.cmp";
+
 export default {
     props: ['mail'],
     template: `
     <section class="mail-preview">
-            <p :class="{ fill : mail.isRead }">✉</p>
+            <img class="is-read-logo" :src="imgSrc" @click="toggleIsRead()"></p>
             <h3>Mail subject:</h3>
             <p>{{mail.subject}}</p>
     </section>
     `,
+    data() {
+        return {
+            imgSrc: '',
+            isRead: ''
+        }
+    },
+    methods: {
+        toggleIsRead() {
+            this.imgSrc = this.isRead ? '../css/apps/mister-mail/img/open-mail.png' : '../css/apps/mister-mail/img/close-mail.png';
+            this.isRead = !this.isRead
+        },
+    },
+    created() {
+        this.isRead = this.mail.isRead
+        this.imgSrc = this.isRead ? '../css/apps/mister-mail/img/open-mail.png' : '../css/apps/mister-mail/img/close-mail.png';
+    },
 
 }
 

@@ -1,0 +1,55 @@
+.mail-app {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 80px 70vh;
+    grid-template-areas: "header header" "side-menu .";
+}
+
+.mail-header {
+    grid-area: header;
+    background-color: aqua;
+    /* padding-left: 10px; */
+    /* padding-r: 10px; */
+}
+
+.mail-header h1 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.mail-side-menu {
+    grid-area: side-menu;
+    background-color: lightcoral;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gallery-mails {
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+    overflow: auto;
+    margin-block-end:0;
+}
+
+.mail-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    background-color: lightcyan;
+}
+
+.mail-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mail-app {
+    /* padding: 10px; */
+}
+.is-read-logo{
+    width: 20px;
+}
