@@ -16,25 +16,25 @@ export default {
         select(mail) {
             this.$emit('selected', mail)
         },
-        // remove(mailId) {
-        //     mailService.remove(mailId)
-        //         .then(mail => {
-        //             const msg = {
-        //                 txt: 'mail removed successfully',
-        //                 type: 'success'
-        //             }
-        //             eventBus.$emit('show-msg', msg);
-        //             eventBus.$emit('reloadMails');
-        //         })
-        //         .catch(err =>{
-        //             console.log(err);
-        //             const msg = {
-        //                 txt: 'Error, please try again later',
-        //                 type: 'error'
-        //             }
-        //             eventBus.$emit('show-msg', msg)
-        //         })
-        // },
+        remove(mailId) {
+            mailService.remove(mailId)
+                .then(mail => {
+                    const msg = {
+                        txt: 'mail removed successfully',
+                        type: 'success'
+                    }
+                    eventBus.$emit('show-msg', msg);
+                    eventBus.$emit('reloadMails');
+                })
+                .catch(err =>{
+                    console.log(err);
+                    const msg = {
+                        txt: 'Error, please try again later',
+                        type: 'error'
+                    }
+                    eventBus.$emit('show-msg', msg)
+                })
+        },
     },
     components: {
         mailPreview

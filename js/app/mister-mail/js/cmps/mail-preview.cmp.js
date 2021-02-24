@@ -1,3 +1,4 @@
+// import mailListCmp from "./mail-list.cmp";
 
 export default {
     props: ['mail'],
@@ -10,16 +11,20 @@ export default {
     `,
     data() {
         return {
-            imgSrc: '../css/apps/mister-mail/img/open-mail.png'
+            imgSrc: '',
+            isRead: ''
         }
     },
-    // methods: {
-    //     toggleIsRead() {
-    //         isReadSrc = mail.isRead ? '../css/apps/mister-mail/img/open-mail.png' : '../css/apps/mister-mail/img/open-mail.png';
-    //     },
-    // },
-    // created: {
-    //     // this.imgSrc= isReadSrc
-    // },
+    methods: {
+        toggleIsRead() {
+            this.imgSrc = this.isRead ? '../css/apps/mister-mail/img/open-mail.png' : '../css/apps/mister-mail/img/close-mail.png';
+            this.isRead = !this.isRead
+        },
+    },
+    created() {
+        this.isRead = this.mail.isRead
+        this.imgSrc = this.isRead ? '../css/apps/mister-mail/img/open-mail.png' : '../css/apps/mister-mail/img/close-mail.png';
+    },
+
 }
 
