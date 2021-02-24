@@ -1,44 +1,26 @@
-
+import appSusHeader from './cmps/appSus-header.cmp.js'
+import appSusFooter from './cmps/appSus-footer.cmp.js'
 import { myRouter } from './routes.js'
-
-
+// import userMsg from './cmps/user-msg.cmp.js'
 
 
 const options = {
     el: '#app',
-    router : myRouter,
-    template:`
-        <section >
-             <apsus-header />
-             <router-view />
-             <footer><p> &copy; Coffeerights 2021</p></footer>
+    router: myRouter,
+    template: `
+        <section class="main-container-app">
+            <!-- <user-msg> -->
+            <appSus-header />
+            <router-view />
+            <appSus-footer />
         </section>
-     `,
-      
-    data() {
-        return {
-      
-        }
-    },
-
-
-    created() {
-        console.log('On Load Main !!');
-
-    },
-    methods: {
-        foo(){
-             console.log('gfdg')
-        }
-    },
-    computed: {
- 
-    },
-    components:{
-      bookHeader,
+    `,
+    components: {
+        appSusHeader,
+        // userMsg,
+        appSusFooter
     }
 }
 
+const app = new Vue(options)
 
-
-new Vue(options)
