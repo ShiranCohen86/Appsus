@@ -85,7 +85,6 @@ const myMails = [
 
 export const mailService = {
     getMails,
-    getCurrencySymbol,
     getById,
     save,
     remove
@@ -104,12 +103,6 @@ function getMails() {
 
 function getById(id) {
     return storageService.get(MAILS_KEY, id)
-}
-
-function getCurrencySymbol({ listPrice }) {
-    if (listPrice.currencyCode === 'USD') return '$';
-    if (listPrice.currencyCode === 'EUR') return '€';
-    if (listPrice.currencyCode === 'ILS') return '₪';
 }
 
 function save(mail) {

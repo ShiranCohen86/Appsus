@@ -10,10 +10,8 @@ export default {
             <mail-preview :mail="mail" />
             <button @click="remove(mail.id)">x</button>
             <router-link :to="'/mister-mail/'+mail.id">Mail Details</router-link>
-
         </li>
     </ul>
-
     `,
     methods: {
         remove(mailId) {

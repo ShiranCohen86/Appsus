@@ -1,13 +1,13 @@
-import mailHeader from '../cmps/mail-header.cmp.js'
-import mailSideMenu from '../cmps/mail-side-menu.cmp.js'
+// import mailHeader from '../cmps/mail-header.cmp.js'
+// import mailSideMenu from '../cmps/mail-side-menu.cmp.js'
 import { mailService } from '../services/mail.service.js'
 import { eventBus } from '../services/event-bus-service.js'
 
 export default {
     template: `
     <section v-if="mail" class="mail-details-page">
-        <mail-header />
-        <mail-side-menu />
+        <!-- <mail-header />
+        <mail-side-menu /> -->
         <!-- <button @click="remove(mail.id)">x</button> -->
         <router-link to="/mister-mail" @click.native="remove(mail.id)">Delete Mail</router-link>
         <section class="mail-details">
@@ -53,8 +53,8 @@ export default {
     created() {
         this.loadDetails();
     },
-    components: {
-        mailHeader,
-        mailSideMenu,
-    }
+    // components: {
+    //     mailHeader,
+    //     mailSideMenu,
+    // }
 }
