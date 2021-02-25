@@ -39,7 +39,6 @@ export default {
     },
     created() {
         this.loadMails()
-        eventBus.$on('reloadMails', this.loadMails);
     },
     components: {
         mailHeader,
