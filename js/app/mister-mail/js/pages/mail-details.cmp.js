@@ -5,7 +5,7 @@ import { eventBus } from '../services/event-bus-service.js'
 
 export default {
     template: `
-    <section class="mail-details-page">
+    <section v-if="mail" class="mail-details-page">
         <mail-header />
         <mail-side-menu />
         <!-- <button @click="remove(mail.id)">x</button> -->
@@ -48,11 +48,11 @@ export default {
                     this.mail = mail
                     console.log(mail);
                 })
-        },
+            },
     },
-    mounted() {
+    created() {
         this.loadDetails();
-        console.log(this.mail);
+        // console.log(this.mail);
         eventBus.$on('reloadMails', this.loadMails);
     },
     components: {
