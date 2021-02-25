@@ -52,10 +52,6 @@ export default {
     },
     created() {
         this.loadDetails();
-        // eventBus.$on('reloadMails');
-    },
-    destroyed() {
-        // eventBus.$off('reloadMails', this.loadMails);
     },
     components: {
         mailHeader,

@@ -14,8 +14,6 @@ export default {
         </li>
     </ul>
 
-
-
     `,
     methods: {
         remove(mailId) {

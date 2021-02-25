@@ -4,16 +4,11 @@ import { mailService } from '../services/mail.service.js'
 import { eventBus } from '../services/event-bus-service.js';
 import  mailList  from '../cmps/mail-list.cmp.js'
 
-// import userMsg from '../cmps/user-msg.cmp.js'
-
 export default {
     template: `
         <section class="mail-app">
-            <!-- <user-msg /> -->
             <mail-header />
-            <!-- <mail-filter @filtered="setFilter" /> -->
             <mail-list :mails="mailsToShow" />
-            <!-- {{mails}} -->
             <mail-side-menu/>
         </section>
     `,
@@ -39,11 +34,12 @@ export default {
     },
     created() {
         this.loadMails()
+        eventBus.$on('reloadMails', this.loadMails);
+        
     },
     components: {
         mailHeader,
         mailList,
-        // userMsg,
         mailSideMenu
     },
 }

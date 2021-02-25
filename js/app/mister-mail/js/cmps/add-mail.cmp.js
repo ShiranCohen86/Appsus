@@ -30,8 +30,7 @@ export default {
             this.review.rate = rate;
         },
         addMail() {
-            this.$emit('newMail', this.mail);
-
+            eventBus.$emit('newMail', this.mail);
             this.mail = this.newMail();
         },
     },
