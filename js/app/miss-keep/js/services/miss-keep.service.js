@@ -12,27 +12,6 @@ const KEEP_KEY = 'MyKeeps'
     
 }
 
- //  with Promise
-// function getBookById(idx){
-//    // return getBookList.find(book=>book)
-//    console.log('id to find in  book service',idx)
-// //    const booksArr= loadBooksFromStorage();
-//     loadBooksFromStorage()
-//    .then(booksArr=> 
-//     console.log('booksArr from book service',booksArr))
-//     for(let i=0;i<booksList.length;i++){
-//         if(idx===booksList[i].id){
-//             console.log('the id returned from the service by id is : ',booksList[i].id)
-//             var book = booksList[i];
-//             console.log('the book i have found from local storage',book);
-//              return  book;
-//         }
-        
-//     }
-
-//   // console.log('booksArr from book service',booksArr)
- 
-// }
 
 function saveAllKeeps(keeps){
 
