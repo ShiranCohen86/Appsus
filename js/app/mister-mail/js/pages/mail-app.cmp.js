@@ -35,8 +35,6 @@ export default {
     computed: {
         mailsToShow() {
             return this.mails;
-
-
         },
     },
     created() {
