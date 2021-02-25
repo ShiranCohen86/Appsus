@@ -4,28 +4,27 @@ import {keepsService} from  '../services/miss-keep.service.js';
 
 export default {
     template: `
-        <section class="keep-app flex justify-content-center align-items-center">
-            <div >
-                <h1>Keep App</h1>
-                <span>Multiline message is:</span>
-                <!-- <p style="white-space: pre-line;">{{ note1 }}</p> -->
-                <br>
-                <textarea v-model="note1 " placeholder=""></textarea>
-                <!-- <p style="white-space: pre-line;">{{ note2 }}</p> -->
-                <br>
-                <textarea v-model="note2" placeholder=""></textarea>
-                <!-- <p style="white-space: pre-line;">{{ note3 }}</p> -->
-                <br>
-                <textarea v-model="note3" placeholder=""></textarea>
-                <button   @click.prevent="saveKeeps()" > Save</button>
-                <button   @click.prevent="loadKeeps()" > load</button>
+        <section class="keep-app flex justify-content-center align-items-center ">
+            <div  class="grid-container " >
+             
+                <textarea class="txt-area round" v-model="note1" style="overflow:hidden"  placeholder=""></textarea>
+              
+                <textarea class="txt-area round" v-model="note2" style="overflow:hidden"  placeholder=""></textarea>
+               
+                <textarea class="txt-area round" v-model="note3" style="overflow:hidden"  placeholder=""></textarea>
+            </div>
+                <button class="myButoon round"  @click.prevent="addKeep()" > add</button>
+                <button class="myButoon round"  @click.prevent="saveKeeps()" > Save</button>
+                <button  class="myButoon round" @click.prevent="loadKeeps()" > load</button>
+
+                
          
-           </div>
         </section>
     `,
 
         data() {
             return {
+                keeps = [],
                 note1 : null,
                 note2 : null,
                 note3 : null,
@@ -53,6 +52,9 @@ export default {
                 this.note2=keepsArr[0].keep2;
                 this.note3=keepsArr[0].keep3;
                } )
+         },
+         addKeep(){
+
          }
     },
     components: {
