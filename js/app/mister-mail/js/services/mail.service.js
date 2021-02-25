@@ -5,77 +5,77 @@ import { storageService } from './async-storage-service.js'
 const MAILS_KEY = 'mail'
 const myMails = [
     {
-        id: 1,
+        id: '1',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
         sentAt: 1551133930591
     },
     {
-        id: 2,
+        id: '2',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: false,
         sentAt: 1551133930592
     },
     {
-        id: 3,
+        id: '3',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: true,
         sentAt: 1551133930593
     },
     {
-        id: 4,
+        id: '4',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: true,
         sentAt: 1551133930593
     },
     {
-        id: 5,
+        id: '5',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: true,
         sentAt: 1551133930593
     },
     {
-        id: 6,
+        id: '6',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: true,
         sentAt: 1551133930593
     },
     {
-        id: 7,
+        id: '7',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: true,
         sentAt: 1551133930593
     },
     {
-        id: 8,
+        id: '8',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: true,
         sentAt: 1551133930593
     },
     {
-        id: 9,
+        id: '9',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: true,
         sentAt: 1551133930593
     },
     {
-        id: 10,
+        id: '10',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: true,
         sentAt: 1551133930593
     },
     {
-        id: 11,
+        id: '11',
         subject: 'Wassap?',
         body: 'Pick up!',
         isRead: true,

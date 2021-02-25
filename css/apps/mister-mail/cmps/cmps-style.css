@@ -5,6 +5,11 @@
     grid-template-areas: "header header" "side-menu .";
 }
 
+.mail-preview.read {
+    background-color: #9e9e9e94;
+    width: 100vw;
+}
+
 .mail-header {
     grid-area: header;
     background-color: aqua;
@@ -29,7 +34,7 @@
     padding-inline-start: 10px;
     padding-inline-end: 10px;
     overflow: auto;
-    margin-block-end:0;
+    margin-block-end: 0;
 }
 
 .mail-card {
@@ -45,11 +50,14 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    width: 100vh;
 }
 
 .mail-app {
     /* padding: 10px; */
 }
-.is-read-logo{
-    width: 20px;
+
+.is-read-logo {
+    width: 30px;
+    color: black;
 }

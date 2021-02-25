@@ -35,13 +35,10 @@ export default {
     computed: {
         mailsToShow() {
             return this.mails;
-
-
         },
     },
     created() {
         this.loadMails()
-        eventBus.$on('reloadBooks', this.loadBooks);
     },
     components: {
         mailHeader,

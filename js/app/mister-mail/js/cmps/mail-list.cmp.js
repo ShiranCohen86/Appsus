@@ -9,16 +9,18 @@ export default {
         <li v-for="mail in mails" :key="mail.id" class="mail-card">
             <mail-preview :mail="mail" />
             <button @click="remove(mail.id)">x</button>
+            <router-link :to="'/mister-mail/'+mail.id">Mail Details</router-link>
+
         </li>
     </ul>
+
+
+
     `,
     methods: {
-        select(mail) {
-            this.$emit('selected', mail)
-        },
         remove(mailId) {
             mailService.remove(mailId)
-                .then(mail => {
+                .then(() => {
                     const msg = {
                         txt: 'mail removed successfully',
                         type: 'success'
