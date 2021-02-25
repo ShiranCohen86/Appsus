@@ -11,14 +11,14 @@ export default {
             <button @click="remove(mail.id)">x</button>
         </li>
     </ul>
+    
+
+
     `,
     methods: {
-        select(mail) {
-            this.$emit('selected', mail)
-        },
         remove(mailId) {
             mailService.remove(mailId)
-                .then(mail => {
+                .then(() => {
                     const msg = {
                         txt: 'mail removed successfully',
                         type: 'success'
