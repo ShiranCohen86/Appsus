@@ -5,11 +5,11 @@ export default {
     template: `
     <section class="mail-preview" :class="{read : isRead}">
             <img class="read-logo" :src="isRead ? openMailSrc : closeMailSrc" @click="isRead = !isRead"/>
-            <img class="bin-logo" src="css/apps/mister-mail/img/bin.png" @click="remove(mail.id)"/>
             <img class="star-logo" :src="isStarred ? starSrc : starredSrc" @click="isStarred = !isStarred"/>
             <h3>Mail subject:</h3>
             <p>{{mail.subject}}</p>
             <router-link :to="'/mister-mail/'+mail.id">Mail Details</router-link>
+            <img class="bin-logo" src="css/apps/mister-mail/img/bin.png" @click="remove(mail.id)"/>
     </section>
     `,
     data() {
