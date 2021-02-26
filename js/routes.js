@@ -25,11 +25,7 @@ const routes = [
         component: misterMail,
         children: [
             {
-                path: 'compose',
-                component: compose
-            },
-            {
-                path: 'inbox',
+                path: '/',
                 component: mailList
             },
             {

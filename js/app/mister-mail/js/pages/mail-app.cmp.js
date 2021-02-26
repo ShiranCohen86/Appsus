@@ -8,7 +8,8 @@ export default {
         <section class="mail-app">
             <mail-header />
             <mail-side-menu/>
-            <router-view />
+            <book-filter @filtered="setFilter" />
+            <book-list :books="booksToShow"  />
         </section>
     `,
     data() {

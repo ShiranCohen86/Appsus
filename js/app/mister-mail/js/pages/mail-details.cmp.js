@@ -5,8 +5,8 @@ export default {
     <section v-if="mail" class="mail-details-page">
 
         <!-- <button @click="remove(mail.id)">x</button> -->
-        <router-link to="/mister-mail/inbox" @click.native="remove(mail.id)">Delete Mail</router-link>
         <section class="mail-details">
+            <router-link to="/mister-mail/inbox" @click.native="remove(mail.id)">Delete Mail</router-link>
             {{mail.body}} 
             {{mail.sentAt}} 
         </section>
