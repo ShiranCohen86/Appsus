@@ -1,4 +1,6 @@
 import { eventBus } from '../services/event-bus-service.js'
+import { mailService } from '../services/mail.service.js'
+
 
 export default {
     template: `
@@ -23,12 +25,16 @@ export default {
         },
         loadMailDetails(mail) {
             const id = this.$route.params.mailId
-            this.mail = mail     
+            mailService.getById(id)
+            .then (mail => this.mail = mail)
         },
     },
     created() {
         this.loadMailDetails();
         eventBus.on('mailById', loadMailDetails)
     },
+    component:{
+        mailService
+    }
 
 }
