@@ -2,51 +2,57 @@ import mailHeader from '../cmps/mail-header.cmp.js'
 import mailSideMenu from '../cmps/mail-side-menu.cmp.js'
 import { mailService } from '../services/mail.service.js'
 import { eventBus } from '../services/event-bus-service.js';
-// import mailList from '../cmps/mail-list.cmp.js'
 
 export default {
     template: `
         <section class="mail-app">
             <mail-header />
-            <router-view />
-
-            <!-- <mail-list :mails="mailsToShow" /> -->
             <mail-side-menu/>
+            <router-view />
         </section>
     `,
     data() {
         return {
             mails: [],
-            filterBy: null
         }
     },
     methods: {
-        setFilter(filterBy) {
-            this.filterBy = filterBy
-        },
         loadMails() {
             mailService.getMails()
-                .then(mails => this.mails = mails)
+                .then(mails => {
+                    this.mails = mails
+                    eventBus.$emit('getEmails', this.mails)
+                })
+        },
+        deleteMail(mail) {
+            mailService.remove(mail)
+            this.loadMails
+
         },
         saveMail(mail) {
             mailService.save(mail)
-        }
-    },
-    computed: {
-        mailsToShow() {
-            return this.mails;
         },
+        getMailById(mailId) {
+            mailService.getById(mailId)
+            .then (mail => eventBus.$emit('mailById', mail))
+        }
+
     },
     created() {
+        mailService.createMails()
         this.loadMails()
         eventBus.$on('reloadMails', this.loadMails);
         eventBus.$on('addMail', this.saveMail);
-        eventBus.$emit('getMails', this.mailsToShow);
+        eventBus.$on('deleteMail', this.deleteMail);
+    },
+    destroyed() {
+        eventBus.$off('reloadMails', this.loadMails);
+        eventBus.$off('addMail', this.saveMail);
+        eventBus.$off('deleteMail', this.deleteMail);
 
     },
     components: {
         mailHeader,
         mailSideMenu,
-        // mailList
     },
 }
