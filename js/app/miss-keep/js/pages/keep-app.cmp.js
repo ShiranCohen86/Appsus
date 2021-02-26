@@ -7,16 +7,21 @@ import noteTodos from '../cmps/note-todos.cmp.js'
 export default {
     template: `
         <section class=" keep-app">
-            <div class="main-container flex justify-content-center">
-                <textarea class=" Notes-Variations round "   v-model="notesVariations"  placeholder="Take a Note...">
-                    <!-- <div role="button" class="Q0hgme-LgbsSe Q0hgme-Bz112c-LgbsSe VsHK1d INgbqf-LgbsSe VIpgJd-LgbsSe" tabindex="0" aria-label="Change color" style="user-select: none;"></div> -->
-                </textarea>
-                <div class="Notes-Variations-buttons-container">
-                    <button class="Notes-Variations-Button round" > text</button>
-                    <button class="Notes-Variations-Button round" > todos</button>
-                    <button class="Notes-Variations-Button round" > img</button>
-                    <button class="Notes-Variations-Button round" > Add</button>
-                </div>
+            <div class="main-container flex justify-content-center" >
+
+
+                        <!-- <div contenteditable="true"  class=" Notes-Variations round flex  justify-content-flex-end "   v-model="notesVariations"  placeholder="Take a Note..."> -->
+                    
+                     <textarea class=" Notes-Variations round "   v-model="notesVariations"   @click.prevent="clear()" placeholder="Take a Note...">
+                      </textarea>
+                      <div contenteditable="false" class="Notes-Variations-buttons-container ">
+                         <button class="Notes-Variations-Button round text  "  @click.prevent="editContent(1)" v-bind:class="{opacity : gKeepsGenerator.isTxt }"> text</button>
+                         <button class="Notes-Variations-Button round todos"  @click.prevent="editContent(2)" v-bind:class="{opacity : gKeepsGenerator.isTodos }"> todos</button>
+                         <button class="Notes-Variations-Button round img"  @click.prevent="editContent(3)" v-bind:class="{opacity : gKeepsGenerator.isImg }"> img</button>
+                        <button class="Notes-Variations-Button round add"  @click.prevent="editContent(4)" v-bind:class="{opacity : gKeepsGenerator.add }"> Add</button>
+                    </div>
+                                
+                            <!-- </div> -->
             
            </div>
 
@@ -47,6 +52,13 @@ export default {
                 // keep3 : null,
                 keepsArr2 : [],
                 notesVariations : "",
+                gKeepsGenerator : {
+                    isTxt : false,
+                    isTodos : false, 
+                    isImg : false,
+                    add : false,
+
+                }
 
             
         
@@ -62,6 +74,12 @@ export default {
 
     
         },
+        computed: {
+            myGens(){
+                console.log('this.gKeepsGenerator.isTxt',this.gKeepsGenerator.isTxt)
+                return this.gKeepsGenerator.isTxt;
+            }
+        },
         methods: {
             loadKeeps() {
                  var y = keepsService.onloadApp()
@@ -73,12 +91,50 @@ export default {
                     })
           console.log('zzzzzzzzzzzzzzz',y)
             },
-
-
-            addKeep() {
-
+            clear(ev){
+                ev.preventdefault;
+                this.gKeepsGenerator.isTxt=false
+                this.gKeepsGenerator.isTodos=false
+                this.gKeepsGenerator.isImg=false
+                this.gKeepsGenerator.add=false
+            },
+            editContent(num) {
+                console.log('editContenteditContenteditContenteditContent',num)
+                switch(num) {
+                    case 1:
+                        this.gKeepsGenerator.isTxt=true
+                        this.gKeepsGenerator.isTodos=false
+                        this.gKeepsGenerator.isImg=false
+                        this.gKeepsGenerator.add=false
+                      break;
+                    case 2:
+                        this.gKeepsGenerator.isTxt=false
+                        this.gKeepsGenerator.isTodos=true
+                        this.gKeepsGenerator.isImg=false
+                        this. gKeepsGenerator.add=false
+                      break;
+                    case 3:
+                        this.gKeepsGenerator.isTxt=false
+                        this.gKeepsGenerator.isTodos=false
+                        this.gKeepsGenerator.isImg=true
+                        this.gKeepsGenerator.add=false
+                      break;
+                    case 4:
+                        this.gKeepsGenerator.isTxt=false
+                        this.gKeepsGenerator.isTodos=false
+                        this.gKeepsGenerator.isImg=false
+                        this.gKeepsGenerator.add=true   
+                        setTimeout(()=>{
+                            this.gKeepsGenerator.add=false
+                             }, 3000);                   
+                      break;
+                    default:
+                      // code block
+                  }
+             
 
             },
+ 
          //   },
             saveKeeps() {
     
