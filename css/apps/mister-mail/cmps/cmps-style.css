@@ -61,9 +61,17 @@
 .read-logo {
     width: 30px;
 }
+
 .bin-logo {
     width: 30px;
 }
+
 .star-logo {
     width: 30px;
+}
+
+.compose-btn {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
 }
