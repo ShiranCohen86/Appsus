@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 15% 85%;
     grid-template-rows: 10vh 80vh;
-    grid-template-areas: "side-menu header" "side-menu .";
+    grid-template-areas: "header header" "side-menu .";
     background-color: #ffffff;
 }
 
@@ -16,10 +16,16 @@
     background-color: #f1f3f4;
     display: flex;
     padding: 25px;
-    /* justify-content: center; */
+    justify-content: center;
     gap: 10px;
     /* padding-left: 10px; */
     /* padding-r: 10px; */
+}
+.mail-filter > input {
+    width: 500px;
+}
+.email-filter{
+    width: 200px;
 }
 
 .mail-header h1 {

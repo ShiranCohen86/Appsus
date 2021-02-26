@@ -1,16 +1,17 @@
 export default {
     template: `
         <form @submit.prevent="setFilter" class="mail-filter">
-            <input type="search" @input="setFilter" placeholder="Search Email..." v-model="filterBy.txt">
-            <select className="email-filter" v-model="filterBy.msgStatus">
+            <select class="email-filter" v-model="filterBy.msgStatus">
                 <option value="all">All</option>
-                <option value="read">Read</option>
+                <option value="read">Read</option> 
                 <option value="unread">Unread</option>
             </select>
-            <select className="email-sort" v-model="filterBy.sort">
+            <select class="email-sort" v-model="filterBy.sort">
+                <option value="" disabled selected>Sort</option>
                 <option value="subject">By subject</option>
                 <option value="date">By date</option>
             </select>
+            <input type="search" @input="setFilter" placeholder="Search Email..." v-model="filterBy.txt">
         </form>
     `,
     data() {
