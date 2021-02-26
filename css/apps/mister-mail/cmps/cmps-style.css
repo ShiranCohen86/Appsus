@@ -1,7 +1,7 @@
 .mail-app {
     display: grid;
-    grid-template-columns: 25% 75%;
-    grid-template-rows: 80px 70vh;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 10vh 80vh;
     grid-template-areas: "header header" "side-menu .";
 }
 
@@ -50,11 +50,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 100vh;
-}
-
-.mail-app {
-    /* padding: 10px; */
+    width: 100vw;
 }
 
 .is-read-logo {

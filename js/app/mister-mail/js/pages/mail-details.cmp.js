@@ -1,15 +1,11 @@
-import mailHeader from '../cmps/mail-header.cmp.js'
-import mailSideMenu from '../cmps/mail-side-menu.cmp.js'
-import { mailService } from '../services/mail.service.js'
 import { eventBus } from '../services/event-bus-service.js'
 
 export default {
     template: `
     <section v-if="mail" class="mail-details-page">
-        <mail-header />
-        <mail-side-menu />
+
         <!-- <button @click="remove(mail.id)">x</button> -->
-        <router-link to="/mister-mail" @click.native="remove(mail.id)">Delete Mail</router-link>
+        <router-link to="/mister-mail/inbox" @click.native="remove(mail.id)">Delete Mail</router-link>
         <section class="mail-details">
             {{mail.body}} 
             {{mail.sentAt}} 
@@ -23,42 +19,16 @@ export default {
     },
     methods: {
         remove(mailId) {
-            mailService.remove(mailId)
-                .then(mail => {
-                    const msg = {
-                        txt: 'mail removed successfully',
-                        type: 'success'
-                    }
-                    eventBus.$emit('show-msg', msg);
-                    eventBus.$emit('reloadMails');
-                })
-                .catch(err =>{
-                    console.log(err);
-                    const msg = {
-                        txt: 'Error, please try again later',
-                        type: 'error'
-                    }
-                    eventBus.$emit('show-msg', msg)
-                })
+            eventBus.$emit('deleteMail', mailId)       
         },
-        loadDetails() {
+        loadMailDetails(mail) {
             const id = this.$route.params.mailId
-            mailService.getById(id)
-                .then(mail => {
-                    this.mail = mail
-                    console.log(mail);
-                })
-            },
+            this.mail = mail     
+        },
     },
     created() {
-        this.loadDetails();
-        // eventBus.$on('reloadMails');
+        this.loadMailDetails();
+        eventBus.on('mailById', loadMailDetails)
     },
-    destroyed() {
-        // eventBus.$off('reloadMails', this.loadMails);
-    },
-    components: {
-        mailHeader,
-        mailSideMenu,
-    }
+
 }

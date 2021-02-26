@@ -1,3 +1,4 @@
+
 export default {
     template: `
    <footer class="mail-side-menu">

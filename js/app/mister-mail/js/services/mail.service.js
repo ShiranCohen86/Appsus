@@ -1,94 +1,16 @@
 
 import { utilService } from './util-service.js'
 import { storageService } from './async-storage-service.js'
-
 const MAILS_KEY = 'mail'
-const myMails = [
-    {
-        id: '1',
-        subject: 'Wassap?',
-        body: 'Pick up!',
-        isRead: false,
-        sentAt: 1551133930591
-    },
-    {
-        id: '2',
-        subject: 'Wassap?',
-        body: 'Pick up!',
-        isRead: false,
-        sentAt: 1551133930592
-    },
-    {
-        id: '3',
-        subject: 'Wassap?',
-        body: 'Pick up!',
-        isRead: true,
-        sentAt: 1551133930593
-    },
-    {
-        id: '4',
-        subject: 'Wassap?',
-        body: 'Pick up!',
-        isRead: true,
-        sentAt: 1551133930593
-    },
-    {
-        id: '5',
-        subject: 'Wassap?',
-        body: 'Pick up!',
-        isRead: true,
-        sentAt: 1551133930593
-    },
-    {
-        id: '6',
-        subject: 'Wassap?',
-        body: 'Pick up!',
-        isRead: true,
-        sentAt: 1551133930593
-    },
-    {
-        id: '7',
-        subject: 'Wassap?',
-        body: 'Pick up!',
-        isRead: true,
-        sentAt: 1551133930593
-    },
-    {
-        id: '8',
-        subject: 'Wassap?',
-        body: 'Pick up!',
-        isRead: true,
-        sentAt: 1551133930593
-    },
-    {
-        id: '9',
-        subject: 'Wassap?',
-        body: 'Pick up!',
-        isRead: true,
-        sentAt: 1551133930593
-    },
-    {
-        id: '10',
-        subject: 'Wassap?',
-        body: 'Pick up!',
-        isRead: true,
-        sentAt: 1551133930593
-    },
-    {
-        id: '11',
-        subject: 'Wassap?',
-        body: 'Pick up!',
-        isRead: true,
-        sentAt: 1551133930593
-    },
-]
+const myMails = []
+const DEFAULT_MAIL_COUNT = 10;
 
 export const mailService = {
     getMails,
-    getCurrencySymbol,
     getById,
     save,
-    remove
+    remove,
+    createMails
 }
 
 function getMails() {
@@ -106,12 +28,6 @@ function getById(id) {
     return storageService.get(MAILS_KEY, id)
 }
 
-function getCurrencySymbol({ listPrice }) {
-    if (listPrice.currencyCode === 'USD') return '$';
-    if (listPrice.currencyCode === 'EUR') return '€';
-    if (listPrice.currencyCode === 'ILS') return '₪';
-}
-
 function save(mail) {
     if (mail.id) {
         return storageService.put(MAILS_KEY, mail);
@@ -123,3 +39,16 @@ function save(mail) {
 function remove(mailId) {
     return storageService.remove(MAILS_KEY, mailId);
 }
+
+function createMails() {
+    for (let i = 0; i < DEFAULT_MAIL_COUNT; i++) {
+        var mail = {
+            id: utilService.makeId(),
+            subject: 'Wassap? ' + i,
+            body: 'Pick up! ' + i,
+            isRead: false
+        }
+        myMails.push(mail)
+    }
+}
+
