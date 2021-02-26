@@ -8,10 +8,117 @@ const KEEP_KEY = 'MyKeeps'
     loadKeepsFromStorage,
      getKeepList,
      saveAllKeeps,
+     onloadApp,
+     getNotes,
     //  getKeepById,
     
 }
 
+
+
+
+var gNotes = [
+ {
+    type: "NoteTxt",
+    isPinned: true,
+    info: {
+       txt: "Fullstack Me Baby !"
+       
+       }
+ },
+ {
+    type: "NoteTxt",
+    isPinned: true,
+    info: {
+       txt: "Rock And Roll !"
+
+       }
+ },
+ {
+    type: "NoteTxt",
+    isPinned: true,
+    info: {
+       txt: "I Will JavaScript You!"
+
+       }
+ },
+
+ {
+    type: "NoteImg",
+    info: {
+       url: "http://some-img/me",
+       title: "Me playing Mi"
+    },
+    style: {
+       backgroundColor: "#00d"
+    }
+ },
+
+];
+
+
+
+var notes = [
+{
+    type: "NoteTxt",
+    isPinned: true,
+    info: {
+    txt: "Fullstack Me Baby!"
+    }
+ },
+
+{
+    type: "NoteImg",
+    info: {
+    url: "http://some-img/me",
+    title: "Me playing Mi"
+    },
+    style: {
+    backgroundColor: "#00d"
+    }
+},
+
+{
+    type: "NoteTodos",
+    info: {
+       label: "How was it:",
+       todos: [
+           { 
+               txt: "Do that",
+               doneAt: null 
+           },
+        { txt: "Do this"
+        , doneAt: 187111111 
+        }
+       ]
+     }
+    }
+];
+
+function getNotes(){
+    return gNotes;
+}
+
+
+// when the App Loads for the First Time
+function onloadApp(){
+
+    var DBdata=getKeepList()
+    .then( DBnotes=>{
+        console.log(' DB APP LOADS DATA',DBnotes)
+        if (!DBnotes|| DBnotes === undefined ||DBnotes.length===0 ){
+            console.log(' DB APP LOADS RETURN NO DATA- function will return gNotes',gNotes)
+            return gNotes;
+        }else{
+            console.log(' DB APP LOADS NO EMPTY DATA - will return DATA',gNotes)
+            gNotes=DBnotes;
+            return gNotes;
+        }
+        
+    })
+  return DBdata;
+
+}
 
 function saveAllKeeps(keeps){
 
