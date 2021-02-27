@@ -4,11 +4,11 @@ import { mailService } from '../services/mail.service.js'
 
 export default {
     template: `
-    <section v-if="mail" class="mail-details-page">
+    <section class="mail-details-page">
 
         <!-- <button @click="remove(mail.id)">x</button> -->
         <section class="mail-details">
-            <router-link to="/mister-mail/inbox" @click.native="remove(mail.id)">Delete Mail</router-link>
+            <router-link to="/mister-mail" @click.native="remove(mail.id)">Delete Mail</router-link>
             {{mail.body}} 
             {{mail.sentAt}} 
         </section>
@@ -16,14 +16,14 @@ export default {
     `,
     data() {
         return {
-            mail: null
+            mail: '',
         }
     },
     methods: {
         remove(mailId) {
             eventBus.$emit('deleteMail', mailId)
         },
-        loadMailDetails(mail) {
+        loadMailDetails() {
             const id = this.$route.params.mailId
             mailService.getById(id)
                 .then(mail => this.mail = mail)
@@ -31,7 +31,7 @@ export default {
     },
     created() {
         this.loadMailDetails();
-        eventBus.on('mailById', loadMailDetails)
+        // eventBus.on('mailById', loadMailDetails)
     },
     component: {
         mailService
