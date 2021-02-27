@@ -2,6 +2,7 @@ import { storageService } from './async-storage-service.js'
 
 
 const KEEP_KEY = 'MyKeeps'
+var gIndex =0
  
  export const keepsService = {
     saveKeepsToStorage,
@@ -10,6 +11,9 @@ const KEEP_KEY = 'MyKeeps'
      saveAllKeeps,
      onloadApp,
      getNotes,
+     deleteKeep,
+     getIndex,
+     getAndAddIndex,
     //  getKeepById,
     
 }
@@ -18,8 +22,9 @@ const KEEP_KEY = 'MyKeeps'
 
 
 var gNotes = [
- {
-    type: "noteTxt",
+ { 
+     index : gIndex++,
+     type: "noteTxt",
     isPinned: true,
     info: {
        txt: "Fullstack Me Baby !"
@@ -28,6 +33,7 @@ var gNotes = [
  },
 
 {
+    index : gIndex++,
     type: "noteTodos",
     info: {
        label: "How was it:",
@@ -45,6 +51,7 @@ var gNotes = [
   },
 
  {
+    index : gIndex++,
     type: "noteImg",
     info: {
        url: "http://some-img/me",
@@ -57,6 +64,24 @@ var gNotes = [
 
 ];
 
+
+function getAndAddIndex(){
+    gIndex++
+    return gIndex;
+}
+
+function getIndex(){
+    return gIndex;
+}
+
+function deleteKeep(index){
+   for( let i =0 ; i<gNotes.length;i++){
+      if( index===gNotes[i].index){
+          gNotes.splice(i,1);
+      }
+
+    }
+}
 
 function getNotes(){
     return gNotes;

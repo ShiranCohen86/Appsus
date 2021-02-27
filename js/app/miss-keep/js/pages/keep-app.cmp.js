@@ -27,9 +27,16 @@ export default {
 
             <div class="  grid-container flex justify-content-center">
                <!-- <input class="Notes-Variations round" v-model="message" placeholder="notes.."> -->
-                 <div v-for="(k,idx)  in myKeeps">
-                    <component  :is="k.type"> </component>
-                </div>
+
+
+
+
+                 <div v-for="(keep,idx)  in myKeeps">
+                
+                    <component  :is="keep.type"  :info="keep" @deletNote="deleteComponent($event, idx)"> </component>
+                 </div> 
+
+
                                                     <!-- <note-todos :keepsArrDb="getKeeps" >  </note-todos> -->
 
 
@@ -138,6 +145,7 @@ export default {
              if( this.gKeepsGenerator.isTxt){
                  console.log('creating text' )
                     keep = {
+                        index : keepsService.getAndAddIndex(),
                         type: "noteTxt",
                         isPinned: true,
                         info: {
@@ -148,6 +156,7 @@ export default {
 
              }else if(this.gKeepsGenerator.isImg){
                  keep = {
+                    index : keepsService.getAndAddIndex(),
                     type: "noteImg",
                     info: {
                       url: "https://www.coding-academy.org/books-photos/8.jpg",
@@ -159,27 +168,28 @@ export default {
                 }
            
             }else if(this.gKeepsGenerator.isTodos){
-             keep ={
-              type: "noteTodos",
-              info: {
-                 label: "How was it:",
-                 todos: [
-                   { 
-                       txt: "Do that",
-                       doneAt: null 
-                   },
-                   { 
-                       txt: "Do this"
-                       , doneAt: 187111111 
-                   }
+                keep ={
+                    index : keepsService.getAndAddIndex(),
+                    type: "noteTodos",
+                    info: {
+                        label: "How was it:",
+                        todos: [
+                        { 
+                            txt: this.notesVariations,
+                            doneAt: null 
+                        },
+                        { 
+                           txt: "Do this"
+                          , doneAt: 187111111 
+                       }
                 ]
                }
             }
 
             }
-            var books= keepsService.getNotes(); //<=====================================================
+            var books= keepsService.getNotes(); 
             console.log('books ',books)
-            console.log('keep ',keep)
+            console.log(' new keep  after created',keep)
             console.log('my text',this.notesVariations)
             books.push(keep)
             //console.log('books after push new Note ',books)
@@ -288,7 +298,11 @@ export default {
 
             },
  
-   
+            deleteComponent(ev,idx){
+                console.log("index from father of  components",ev, idx)
+                keepsService.deleteKeep(ev);
+
+            }
 
 
     },
