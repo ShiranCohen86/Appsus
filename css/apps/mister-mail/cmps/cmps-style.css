@@ -14,7 +14,6 @@
 .mail-details {
     text-align: center;
     margin: 50px auto 0 auto;
-
 }
 
 .mail-filter {
@@ -33,10 +32,9 @@
 .mail-side-menu {
     display: flex;
     flex-direction: column;
-    align-items: center;
     background-color: #eeeeee;
     justify-content: center;
-    width: 200px;
+    min-width: 200px;
     height: 90vh;
 }
 
@@ -62,6 +60,11 @@
     gap: 10px;
 }
 
+.mail-card:hover {
+    box-shadow: 5px 10px 10px 10px #888888be;
+    border: 1px solid grey;
+}
+
 .read-logo {
     width: 30px;
 }
@@ -74,11 +77,33 @@
     width: 30px;
 }
 
-.compose-btn {
+.sent-logo {
+    width: 30px;
+}
+
+.inbox-btn, .star-btn, .sent-btn {
     display: flex;
     align-items: center;
     border-radius: 10px;
     outline: none;
+    height: 50px;
+    justify-content: space-around;
+    margin: 0 10px 5px 10px;
+}
+.inbox-btn:hover, .star-btn:hover, .sent-btn:hover{
+    box-shadow: 5px 10px 10px 10px #888888be;
+    border: 1px solid grey;
+}
+
+.compose-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    width: 50%;
+    align-self: center;
+    margin-block-end: 30px;
+    
 }
 
 .compose-container {
