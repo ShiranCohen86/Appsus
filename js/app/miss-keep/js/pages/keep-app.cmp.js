@@ -12,13 +12,13 @@ export default {
 
                         <!-- <div contenteditable="true"  class=" Notes-Variations round flex  justify-content-flex-end "   v-model="notesVariations"  placeholder="Take a Note..."> -->
                     
-                     <textarea class=" Notes-Variations round "   v-model="notesVariations"   @click.prevent="clear()" placeholder="Take a Note...">
+                     <textarea class=" Notes-Variations round "   v-model="notesVariations"   placeholder="Take a Note...">
                       </textarea>
                       <div contenteditable="false" class="Notes-Variations-buttons-container ">
-                         <button class="Notes-Variations-Button round text  "  @click.prevent="editContent(1)" v-bind:class="{opacity : gKeepsGenerator.isTxt }"> text</button>
-                         <button class="Notes-Variations-Button round todos"  @click.prevent="editContent(2)" v-bind:class="{opacity : gKeepsGenerator.isTodos }"> todos</button>
-                         <button class="Notes-Variations-Button round img"  @click.prevent="editContent(3)" v-bind:class="{opacity : gKeepsGenerator.isImg }"> img</button>
-                        <button class="Notes-Variations-Button round add"  @click.prevent="editContent(4)" v-bind:class="{opacity : gKeepsGenerator.add }"> Add</button>
+                         <button class="Notes-Variations-Button round text  "  @click.prevent="editContent(1)" v-bind:class="{opacity : gKeepsForClass.isTxt }"> text</button>
+                         <button class="Notes-Variations-Button round todos"  @click.prevent="editContent(2)" v-bind:class="{opacity : gKeepsForClass.isTodos }"> todos</button>
+                         <button class="Notes-Variations-Button round img"  @click.prevent="editContent(3)" v-bind:class="{opacity : gKeepsForClass.isImg }"> img</button>
+                        <button class="Notes-Variations-Button round add"  @click.prevent="editContent(4)" v-bind:class="{opacity : gKeepsForClass.add }"> Add</button>
                     </div>
                                 
                             <!-- </div> -->
@@ -58,6 +58,13 @@ export default {
                     isImg : false,
                     add : false,
 
+                },
+                gKeepsForClass : {
+                    isTxt : false,
+                    isTodos : false, 
+                    isImg : false,
+                    add : false,
+
                 }
 
             
@@ -66,13 +73,17 @@ export default {
         },
         created() {
             this.loadKeeps()
-            console.log('Load from keep app')
+            console.log(' created Keep App')
 
             // this.keepsArr[0]=this.keep1;
             // this.keepsArr[1]=this.keep3;
             // this.keepsArr[2]=this.keep3;
 
     
+        },
+        mounted() {
+            this.loadKeeps()
+            console.log(' mounted Keep App')
         },
         computed: {
             myGens(){
@@ -81,6 +92,60 @@ export default {
             }
         },
         methods: {
+            creatNewNote(){
+
+                var keep=null; 
+             if( this.gKeepsGenerator.isTxt){
+                 console.log('creating text' )
+                    keep = {
+                        type: "NoteTxt",
+                        isPinned: true,
+                        info: {
+                            txt: this.notesVariations
+                        }
+                }
+              
+
+             }else if(this.gKeepsGenerator.isImg){
+                 keep = {
+                    type: "NoteImg",
+                    info: {
+                      url: "http://some-img/me",
+                       title: "Me playing Mi"
+                    },
+                    style: {
+                    backgroundColor: "#00d"
+                    }
+                }
+           
+            }else if(this.gKeepsGenerator.isTodos){
+             keep ={
+              type: "NoteTodos",
+              info: {
+                 label: "How was it:",
+                 todos: [
+                   { 
+                       txt: "Do that",
+                       doneAt: null 
+                   },
+                   { 
+                       txt: "Do this"
+                       , doneAt: 187111111 
+                   }
+                ]
+               }
+            }
+
+            }
+            var books= keepsService.getNotes();
+            console.log('books ',books)
+            console.log('keep ',keep)
+           books.push(keep)
+
+            },
+
+
+        
             loadKeeps() {
                  var y = keepsService.onloadApp()
                   .then( DBArr=>{
@@ -99,32 +164,51 @@ export default {
                 this.gKeepsGenerator.add=false
             },
             editContent(num) {
-                console.log('editContenteditContenteditContenteditContent',num)
                 switch(num) {
                     case 1:
                         this.gKeepsGenerator.isTxt=true
+                        this.gKeepsForClass.isTxt=true
                         this.gKeepsGenerator.isTodos=false
+                        this.gKeepsForClass.isTodos=false
                         this.gKeepsGenerator.isImg=false
+                        this.gKeepsForClass.isImg=false
                         this.gKeepsGenerator.add=false
-                      break;
+                        this.gKeepsForClass.add=false
+                        console.log('isTxt=',this.gKeepsGenerator.isTxt)
+                        break;
                     case 2:
                         this.gKeepsGenerator.isTxt=false
+                        this.gKeepsForClass.isTxt=false
                         this.gKeepsGenerator.isTodos=true
+                        this.gKeepsForClass.isTodos=true
                         this.gKeepsGenerator.isImg=false
+                        this.gKeepsForClass.isImg=false
                         this. gKeepsGenerator.add=false
-                      break;
+                        this.gKeepsForClass.add=false
+                        console.log('isTodos', this.gKeepsGenerator.isTodos)
+                        break;
                     case 3:
                         this.gKeepsGenerator.isTxt=false
+                        this.gKeepsForClass.isTxt=false
                         this.gKeepsGenerator.isTodos=false
+                        this.gKeepsForClass.isTodos=false
                         this.gKeepsGenerator.isImg=true
+                        this.gKeepsForClass.isImg=true
                         this.gKeepsGenerator.add=false
-                      break;
+                        this.gKeepsForClass.add=false
+                        console.log('isImg',this.gKeepsGenerator.isImg)
+                        break;
                     case 4:
-                        this.gKeepsGenerator.isTxt=false
-                        this.gKeepsGenerator.isTodos=false
-                        this.gKeepsGenerator.isImg=false
-                        this.gKeepsGenerator.add=true   
+                        this.gKeepsForClass.isTxt=false
+                         this.gKeepsForClass.isTodos=false
+                        this.gKeepsForClass.isImg=false
+                        this.gKeepsGenerator.add=true 
+                        this.gKeepsForClass.add=true
+                        this.creatNewNote()
+                        console.log('after add',this.notesVariations)
+                       // console.log('add',this.gKeepsForClass.add)
                         setTimeout(()=>{
+                            this.gKeepsForClass.add=false
                             this.gKeepsGenerator.add=false
                              }, 3000);                   
                       break;
