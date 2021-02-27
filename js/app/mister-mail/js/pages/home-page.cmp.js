@@ -6,7 +6,7 @@ export default {
     template: `
         <section class="mail-home-page">
             <mail-filter @filtered="setFilter" />
-            <mail-list :mails="mailsToShow" @removeMail="deleteMail"/>
+            <mail-list :mails="mailsToShow" @removeMail="deleteMail" @setIsRead="setIsRead" @setIsStarred="changeStar"/>
         </section>
     `,
     data() {
@@ -26,7 +26,6 @@ export default {
                 })
         },
         deleteMail(mailId) {
-            console.log(mailId);
             mailService.remove(mailId)
                 .then(mail => {
                     const msg = {
@@ -45,6 +44,32 @@ export default {
                     // eventBus.$emit('show-msg', msg)
                 })
         },
+        setIsRead(mail) {
+            mailService.save(mail)
+                .then(() => {
+                    // this.loadDetails();
+                    const msg = {
+                        // txt: `You Removed a review from ${this.book.title} book`,
+                        type: 'success'
+                    }
+                    // eventBus.$emit('show-msg', msg);
+                });
+
+        },
+        changeStar(mail) {
+            mailService.save(mail)
+                .then(() => {
+                    // this.loadDetails();
+                    const msg = {
+                        // txt: `You Removed a review from ${this.book.title} book`,
+                        type: 'success'
+                    }
+                    // eventBus.$emit('show-msg', msg);
+                });
+
+        }
+
+
     },
     computed: {
         mailsToShow() {
@@ -53,7 +78,6 @@ export default {
             const mailsToShow = this.mails.filter(mail => {
                 return (mail.subject.toLowerCase().includes(searchStr)
                     || mail.body.toLowerCase().includes(searchStr))
-
             })
             return mailsToShow;
         },
@@ -63,7 +87,6 @@ export default {
     },
     mounted() {
         eventBus.$on('reloadMails', this.loadMails);
-
     },
     components: {
         mailFilter,

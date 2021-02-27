@@ -1,11 +1,11 @@
 import mailPreview from '../cmps/mail-preview.cmp.js'
 import mailFilter from './mail-filter.cmp.js'
-import {eventBus} from '../services/event-bus-service.js'
+import { eventBus } from '../services/event-bus-service.js'
 export default {
     props: ['mails'],
     template: `
     <ul class="gallery-mails">
-        <li v-for="mail in mails" :key="mail.id" class="mail-card" :class="{notRead : mail.isRead}">
+        <li v-for="mail in mails" :key="mail.id" class="mail-card" :class="{notRead : mail.isRead}" @click="test">
             <img class="read-logo" :src="mail.isRead ? openMailSrc : closeMailSrc" @click="changeRead(mail)"/>
             <img class="star-logo" :src="mail.isStarred ? starredSrc : starSrc" @click="changeStar(mail)"/>
             <router-link :to="'/mister-mail/'+mail.id" >Mail Details</router-link>
@@ -26,13 +26,14 @@ export default {
     methods: {
         changeRead(mail) {
             mail.isRead = !mail.isRead
+            this.$emit('setIsRead', mail)
         },
         changeStar(mail) {
             mail.isStarred = !mail.isStarred
+            this.$emit('setIsStarred', mail)
         },
         deleteMail(mailId) {
             this.$emit('removeMail', mailId)
-            // eventBus.$emit('reloadMails');
         },
     },
     components: {
