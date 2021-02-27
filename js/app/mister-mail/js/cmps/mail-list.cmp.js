@@ -1,14 +1,10 @@
-import { eventBus } from '../services/event-bus-service.js';
 import mailPreview from '../cmps/mail-preview.cmp.js'
-import { mailService } from '../services/mail.service.js'
-import mailFilter from '../cmps/mail-filter.cmp.js'
-
+import mailFilter from './mail-filter.cmp.js'
 
 export default {
-    // props: ['mails'],
+    props: ['mails'],
     template: `
     <ul class="gallery-mails">
-    <mail-filter @filtered="setFilter" />   
         <li v-for="mail in mails" :key="mail.id" class="mail-card" :class="{notRead : mail.isRead}">
             <img class="read-logo" :src="mail.isRead ? openMailSrc : closeMailSrc" @click="changeRead(mail)"/>
             <img class="star-logo" :src="mail.isStarred ? starredSrc : starSrc" @click="changeStar(mail)"/>
@@ -21,27 +17,11 @@ export default {
     data() {
         return {
             filterBy: null,
-            mails:this.mailsToShow,
             openMailSrc: 'css/apps/mister-mail/img/open-mail.png',
             closeMailSrc: 'css/apps/mister-mail/img/close-mail.png',
             starSrc: 'css/apps/mister-mail/img/star.png',
             starredSrc: 'css/apps/mister-mail/img/starred.png',
         }
-    },
-    computed: {
-        mailsToShow() {
-            if (!this.filterBy) return this.mails;
-            const searchStr = this.filterBy.txt.toLowerCase()
-            const mailsToShow = this.mails.filter(mail => {
-                return (mail.subject.toLowerCase().includes(searchStr)
-                    || mail.body.toLowerCase().includes(searchStr))
-
-            })
-            return mailsToShow;
-        },
-    },
-    created() {
-        this.loadMails()
     },
     methods: {
         changeRead(mail) {
@@ -53,15 +33,6 @@ export default {
         remove(mailId) {
 
         },
-        loadMails() {
-            mailService.getMails()
-                .then(mails => {
-                    this.mails = mails
-                })
-        },
-    },
-     created() {
-        this.loadMails()
     },
     components: {
         mailPreview,
