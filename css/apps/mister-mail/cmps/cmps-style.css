@@ -21,10 +21,12 @@
     /* padding-left: 10px; */
     /* padding-r: 10px; */
 }
-.mail-filter > input {
+
+.mail-filter>input {
     width: 500px;
 }
-.email-filter{
+
+.email-filter {
     width: 200px;
 }
 
@@ -81,4 +83,15 @@
     align-items: center;
     border-radius: 10px;
     outline: none;
+}
+
+.compose-container {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    height: 400px;
+    border: 1px solid grey;
+    background-color: aliceblue;
+    opacity: 0.7;
+    margin-inline-end: 20px;
 }
