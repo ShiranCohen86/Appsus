@@ -24,10 +24,10 @@ const routes = [
         path: '/mister-mail',
         component: misterMail,
         children: [
-            {
-                path: '/',
-                component: mailList
-            },
+            // {
+            //     path: '/',
+            //     component: mailList
+            // },
             {
                 path: ':mailId',
                 component: mailDetails

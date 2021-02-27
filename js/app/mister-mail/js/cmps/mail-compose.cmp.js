@@ -3,7 +3,7 @@ import { eventBus } from '../services/event-bus-service.js';
 
 export default {
     template: `
-        <section class="add-mail-container">
+        <section class="compose-container">
             <form class="mail-submit">
                 <input type=text placeholder="Subject" v-model="mail.subject"/>
                 <router-link to="/mister-mail" @click.native.prevent="addMail">Send Mail</router-link>

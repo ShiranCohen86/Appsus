@@ -1,19 +1,25 @@
 export default {
     template: `
-        <form @submit.prevent="setFilter" class="book-filter">
-            <label> Search a book: </label>    
-            <input type="search" @input="setFilter" placeholder="Book name..." v-model="filterBy.byName">
-            <input type="number" placeholder="max" v-model.number="filterBy.fromPrice">
-            <input type="number" placeholder="max" v-model.number="filterBy.toPrice">
-            <button>Search</button>
+        <form @submit.prevent="setFilter" class="mail-filter">
+            <select class="email-filter" v-model="filterBy.msgStatus">
+                <option value="all">All</option>
+                <option value="read">Read</option> 
+                <option value="unread">Unread</option>
+            </select>
+            <select class="email-sort" v-model="filterBy.sort">
+                <option value="" disabled selected>Sort</option>
+                <option value="subject">By subject</option>
+                <option value="date">By date</option>
+            </select>
+            <input type="search" @input="setFilter" placeholder="Search Email..." v-model="filterBy.txt">
         </form>
     `,
     data() {
         return {
             filterBy: {
-                byName: '',
-                fromPrice: 0,
-                toPrice: Infinity
+                txt: '',
+                msgStatus: 0,
+                sort: '',
             }
         }
     },
