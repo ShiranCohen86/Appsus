@@ -2,12 +2,13 @@ export default {
     props: ['keepsArrDb'],
     template: `
   
-     <div  class="note-txt flex justify-content-center align-items-center ">            
+     <div  class=" flex justify-content-center align-items-center ">            
           
-                
-                <div  class="grid-container " v-for="keep in keepsArrDb"  >
-                             
-                  <textarea class="note-todos round"   v-model="keep.info.txt" ></textarea>
+<!--                 
+                <div  class="grid-container " v-for="keep in keepsArrDb"  > -->
+                  <!-- <textarea class="note-todos round"   v-model="keep.info.txt" ></textarea> -->
+
+                  <textarea class="note-todos round"   v-model="txt" ></textarea>
                   <div >
                              <button class="delet-Butoon round"   >Save </button>
                              <button class="delet-Butoon round" > Delet</button>
@@ -20,7 +21,7 @@ export default {
 
     data() {
         return {
-
+            txt :  null,
             keepsArr: [],
 
         }

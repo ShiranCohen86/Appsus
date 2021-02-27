@@ -1,6 +1,7 @@
 import {keepsService} from  '../services/miss-keep.service.js';
 import noteTxt from '../cmps/note-txt.cmp.js'
 import noteTodos from '../cmps/note-todos.cmp.js'
+import noteImg from '../cmps/note-img.cmp.js'
 
 // @import url("./apps/miss-keep/miss-keep.main.css");
 
@@ -12,34 +13,43 @@ export default {
 
                         <!-- <div contenteditable="true"  class=" Notes-Variations round flex  justify-content-flex-end "   v-model="notesVariations"  placeholder="Take a Note..."> -->
                     
-                     <textarea class=" Notes-Variations round "   v-model="notesVariations"   placeholder="Take a Note...">
+                     <textarea class="Notes-Variations round"   v-model="notesVariations"   placeholder="Take a Note...">
                       </textarea>
-                      <div contenteditable="false" class="Notes-Variations-buttons-container ">
-                         <button class="Notes-Variations-Button round text  "  @click.prevent="editContent(1)" v-bind:class="{opacity : gKeepsForClass.isTxt }"> text</button>
-                         <button class="Notes-Variations-Button round todos"  @click.prevent="editContent(2)" v-bind:class="{opacity : gKeepsForClass.isTodos }"> todos</button>
-                         <button class="Notes-Variations-Button round img"  @click.prevent="editContent(3)" v-bind:class="{opacity : gKeepsForClass.isImg }"> img</button>
+                      <div  class="Notes-Variations-buttons-container flex ">
+                        <button class="Notes-Variations-Button round text" @click.prevent="editContent(1)" v-bind:class="{opacity : gKeepsForClass.isTxt }"> text</button>
+                        <button class="Notes-Variations-Button round todos" @click.prevent="editContent(2)" v-bind:class="{opacity : gKeepsForClass.isTodos }"> todos</button>
+                        <button class="Notes-Variations-Button round img"  @click.prevent="editContent(3)" v-bind:class="{opacity : gKeepsForClass.isImg }"> img</button>
                         <button class="Notes-Variations-Button round add"  @click.prevent="editContent(4)" v-bind:class="{opacity : gKeepsForClass.add }"> Add</button>
                         <button class="Notes-Variations-Button round add"  @click.prevent="editContent(5)" v-bind:class="{opacity : gKeepsForClass.save }"> Save</button>
                     </div>
-                                
-                            <!-- </div> -->
-            
-           </div>
+                       <!-- </div> -->
+                    </div>
 
             <div class="  grid-container flex justify-content-center">
-       
-
-
-                <!-- <input class="Notes-Variations round" v-model="message" placeholder="notes.."> -->
-                
-                <div>
-                    <!-- <p>Message is: {{ message }}</p>                -->
-                    <note-todos :keepsArrDb="getKeeps" >  </note-todos>
+               <!-- <input class="Notes-Variations round" v-model="message" placeholder="notes.."> -->
+                 <div v-for="(k,idx)  in myKeeps">
+                    <component  :is="k.type"> </component>
                 </div>
-            </div>
-                <!-- <button class="myButoon round"  @click.prevent="addKeep()" > add</button>
-                <button class="myButoon round"  @click.prevent="saveKeeps()" > Save</button>
-                <button  class="myButoon round" @click.prevent="loadKeeps()" > load</button> -->
+                                                    <!-- <note-todos :keepsArrDb="getKeeps" >  </note-todos> -->
+
+
+    </div>
+                                                <!-- <p class="p" contenteditable="true" placeholder="Take a Note...">
+                                                      <button  class="b" onclick="alert($(this).parent().find('span').text());">hello</button>
+                                                          <span class="testspan">
+                                                          </span>
+                                                  </p> -->
+
+
+                <!-- <div class="test-container p" placeholder="Type something..." contenteditable="true"></div> -->
+
+                <!-- <div  contenteditable="true" class="test-container p" placeholder="Take a Note...">
+
+                Take a Note...
+                <button   contenteditable="false" class="test-button">Button</button> -->
+                    <!-- <textarea class="test-textArea"> at .</textarea>
+                </div> -->
+        
                 
          </section>
     `,
@@ -47,11 +57,12 @@ export default {
         data() {
             return {
 
-                // gkeepsCounter : 3 ,
-                // keep1 : null,
-                // keep2 : null,
-                // keep3 : null,
-                keepsArr2 : [],
+                myComponents : {
+                    isTxt : false,
+                    isTodos : false, 
+                    isImg : false,
+                },
+                myKeeps : [],
                 notesVariations : "",
                 gKeepsGenerator : {
                     isTxt : false,
@@ -89,10 +100,36 @@ export default {
             console.log(' mounted Keep App')
         },
         computed: {
+            getKeeps(){
+                console.log('keepsArr befor  V-bind in Keep App',this.myKeeps)
+                return this.myKeeps;
+            },
             myGens(){
                 console.log('this.gKeepsGenerator.isTxt',this.gKeepsGenerator.isTxt)
                 return this.gKeepsGenerator.isTxt;
-            }
+            },
+            // CurrentComponent(){
+                
+            //     this.myKeeps.forEach(element => {
+                    
+            //         var currentKeep=this.myKeeps
+            //         switch(currentKeep.type) {
+            //             case 'noteTxt':
+            //               return noteTxt
+            //                 break;
+                      
+            //             case 'noteTodos': 
+            //             return noteTodos
+            //                 break;
+                        
+            //             case 'noteImg': 
+            //             return  noteImg
+            //                 break;
+            //                 default:
+            //         }
+            //     });
+           
+            // },
         },
         methods: {
             creatNewNote(){
@@ -101,7 +138,7 @@ export default {
              if( this.gKeepsGenerator.isTxt){
                  console.log('creating text' )
                     keep = {
-                        type: "NoteTxt",
+                        type: "noteTxt",
                         isPinned: true,
                         info: {
                             txt: this.notesVariations
@@ -111,7 +148,7 @@ export default {
 
              }else if(this.gKeepsGenerator.isImg){
                  keep = {
-                    type: "NoteImg",
+                    type: "noteImg",
                     info: {
                       url: "https://www.coding-academy.org/books-photos/8.jpg",
                        title: "Me playing Mi"
@@ -123,7 +160,7 @@ export default {
            
             }else if(this.gKeepsGenerator.isTodos){
              keep ={
-              type: "NoteTodos",
+              type: "noteTodos",
               info: {
                  label: "How was it:",
                  todos: [
@@ -143,7 +180,7 @@ export default {
             var books= keepsService.getNotes(); //<=====================================================
             console.log('books ',books)
             console.log('keep ',keep)
-            console.log('my texttttttttttttt',this.notesVariations)
+            console.log('my text',this.notesVariations)
             books.push(keep)
             //console.log('books after push new Note ',books)
 
@@ -156,8 +193,8 @@ export default {
                   .then( DBArr=>{
                       console.log('xxxxxxxxxxxx in then',DBArr);
                     // this.keepsArr=;
-                        this.keepsArr2=DBArr
-                        console.log('On Load Main !!', this.keepsArr2 );
+                        this.myKeeps=DBArr
+                        console.log('myKeeps On Load Main !!', this.myKeeps );
                     })
           console.log('zzzzzzzzzzzzzzz',y)
             },
@@ -255,17 +292,13 @@ export default {
 
 
     },
-    computed: {
-        getKeeps(){
-            console.log('keepsArr befor  V-bind in Keep App',this.keepsArr2)
-            return this.keepsArr2;
-        }
-    },
+
 
     components: {
   
         noteTxt,
         noteTodos,
+        noteImg,
             
 
     },
