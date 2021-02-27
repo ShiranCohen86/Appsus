@@ -15,7 +15,7 @@ export default {
             isCompose: false
         }
     },
-    components:{
+    components: {
         mailCompose
     }
 }

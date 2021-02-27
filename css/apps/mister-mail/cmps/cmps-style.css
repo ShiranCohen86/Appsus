@@ -41,6 +41,8 @@
     flex-direction: column;
     align-items: center;
     background-color: #eeeeee;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .gallery-mails {

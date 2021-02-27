@@ -21,19 +21,19 @@ export default {
     },
     methods: {
         remove(mailId) {
-            eventBus.$emit('deleteMail', mailId)       
+            eventBus.$emit('deleteMail', mailId)
         },
         loadMailDetails(mail) {
             const id = this.$route.params.mailId
             mailService.getById(id)
-            .then (mail => this.mail = mail)
+                .then(mail => this.mail = mail)
         },
     },
     created() {
         this.loadMailDetails();
         eventBus.on('mailById', loadMailDetails)
     },
-    component:{
+    component: {
         mailService
     }
 
