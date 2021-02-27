@@ -19,7 +19,7 @@ const KEEP_KEY = 'MyKeeps'
 
 var gNotes = [
  {
-    type: "NoteTxt",
+    type: "noteTxt",
     isPinned: true,
     info: {
        txt: "Fullstack Me Baby !"
@@ -27,17 +27,25 @@ var gNotes = [
        }
  },
 
- {
-    type: "NoteTxt",
-    isPinned: true,
+{
+    type: "noteTodos",
     info: {
-       txt: "I Will JavaScript You!"
-
-       }
- },
+       label: "How was it:",
+       todos: [
+         { 
+             txt: "Do that",
+             doneAt: null 
+         },
+         { 
+             txt: "Do this"
+             , doneAt: 187111111 
+         }
+      ]
+     }
+  },
 
  {
-    type: "NoteImg",
+    type: "noteImg",
     info: {
        url: "http://some-img/me",
        title: "Me playing Mi"
