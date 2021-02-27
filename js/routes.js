@@ -6,7 +6,7 @@ import missKeep from './app/miss-keep/js/pages/keep-app.cmp.js'
 import mailDetails from './app/mister-mail/js/pages/mail-details.cmp.js'
 // import compose from './app/mister-mail/js/cmps/mail-compose.cmp.js'
 // import mailList from './app/mister-mail/js/cmps/mail-list.cmp.js'
-import mailPage from './app/mister-mail/js/pages/home-page.cmp.js'
+import mailHomePage from './app/mister-mail/js/pages/home-page.cmp.js'
 
 const routes = [
     {
@@ -27,7 +27,7 @@ const routes = [
         children: [
             {
                 path: '/',
-                component: mailPage
+                component: mailHomePage
             },
             {
                 path: ':mailId',
