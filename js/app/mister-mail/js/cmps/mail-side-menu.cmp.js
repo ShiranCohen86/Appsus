@@ -1,21 +1,21 @@
+import mailCompose from '../cmps/mail-compose.cmp.js'
 
 export default {
     template: `
-   <footer class="mail-side-menu">
-        <button @click="openCompose" class="compose-btn">     
+   <section class="mail-side-menu">
+        <button @click="isCompose = !isCompose" class="compose-btn"> 
           <img src="css/apps/mister-mail/img/plus-sign.png">
           Compose
         </button>
-    </footer>`
+        <mail-compose v-if="isCompose" />
+    </section>`
     ,
     data() {
         return {
-            isCompose: true
+            isCompose: false
         }
     },
-    methods: {
-        openCompose() {
-            this.$emit('compose', this.isCompose)
-        }
-    },
+    components: {
+        mailCompose
+    }
 }
