@@ -52,6 +52,7 @@ export default {
                         // txt: `You Removed a review from ${this.book.title} book`,
                         type: 'success'
                     }
+                    // eventBus.$emit('reloadMails');
                     // eventBus.$emit('show-msg', msg);
                 });
 
@@ -64,12 +65,11 @@ export default {
                         // txt: `You Removed a review from ${this.book.title} book`,
                         type: 'success'
                     }
+                    // eventBus.$emit('reloadMails');
                     // eventBus.$emit('show-msg', msg);
                 });
 
         }
-
-
     },
     computed: {
         mailsToShow() {
