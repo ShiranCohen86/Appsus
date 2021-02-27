@@ -19,6 +19,7 @@ export default {
                          <button class="Notes-Variations-Button round todos"  @click.prevent="editContent(2)" v-bind:class="{opacity : gKeepsForClass.isTodos }"> todos</button>
                          <button class="Notes-Variations-Button round img"  @click.prevent="editContent(3)" v-bind:class="{opacity : gKeepsForClass.isImg }"> img</button>
                         <button class="Notes-Variations-Button round add"  @click.prevent="editContent(4)" v-bind:class="{opacity : gKeepsForClass.add }"> Add</button>
+                        <button class="Notes-Variations-Button round add"  @click.prevent="editContent(5)" v-bind:class="{opacity : gKeepsForClass.save }"> Save</button>
                     </div>
                                 
                             <!-- </div> -->
@@ -57,6 +58,7 @@ export default {
                     isTodos : false, 
                     isImg : false,
                     add : false,
+                    save : false,
 
                 },
                 gKeepsForClass : {
@@ -64,6 +66,7 @@ export default {
                     isTodos : false, 
                     isImg : false,
                     add : false,
+                    save : false,
 
                 }
 
@@ -110,7 +113,7 @@ export default {
                  keep = {
                     type: "NoteImg",
                     info: {
-                      url: "http://some-img/me",
+                      url: "https://www.coding-academy.org/books-photos/8.jpg",
                        title: "Me playing Mi"
                     },
                     style: {
@@ -137,10 +140,12 @@ export default {
             }
 
             }
-            var books= keepsService.getNotes();
+            var books= keepsService.getNotes(); //<=====================================================
             console.log('books ',books)
             console.log('keep ',keep)
-           books.push(keep)
+            console.log('my texttttttttttttt',this.notesVariations)
+            books.push(keep)
+            //console.log('books after push new Note ',books)
 
             },
 
@@ -162,6 +167,7 @@ export default {
                 this.gKeepsGenerator.isTodos=false
                 this.gKeepsGenerator.isImg=false
                 this.gKeepsGenerator.add=false
+                this.gKeepsGenerator.save=false
             },
             editContent(num) {
                 switch(num) {
@@ -185,6 +191,8 @@ export default {
                         this.gKeepsForClass.isImg=false
                         this. gKeepsGenerator.add=false
                         this.gKeepsForClass.add=false
+                        this.gKeepsGenerator.save=false
+                        this.gKeepsForClass.save=false
                         console.log('isTodos', this.gKeepsGenerator.isTodos)
                         break;
                     case 3:
@@ -196,6 +204,8 @@ export default {
                         this.gKeepsForClass.isImg=true
                         this.gKeepsGenerator.add=false
                         this.gKeepsForClass.add=false
+                        this.gKeepsGenerator.save=false
+                        this.gKeepsForClass.save=false
                         console.log('isImg',this.gKeepsGenerator.isImg)
                         break;
                     case 4:
@@ -204,6 +214,8 @@ export default {
                         this.gKeepsForClass.isImg=false
                         this.gKeepsGenerator.add=true 
                         this.gKeepsForClass.add=true
+                        this.gKeepsGenerator.save=false
+                        this.gKeepsForClass.save=false
                         this.creatNewNote()
                         console.log('after add',this.notesVariations)
                        // console.log('add',this.gKeepsForClass.add)
@@ -212,6 +224,26 @@ export default {
                             this.gKeepsGenerator.add=false
                              }, 3000);                   
                       break;
+
+                      case 5:
+                        this.gKeepsGenerator.isTxt=false
+                        this.gKeepsForClass.isTxt=false
+                        this.gKeepsGenerator.isTodos=false
+                        this.gKeepsForClass.isTodos=false
+                        this.gKeepsGenerator.isImg=false
+                        this.gKeepsForClass.isImg=false
+                        this.gKeepsGenerator.add=false
+                        this.gKeepsForClass.add=false
+                        this.gKeepsGenerator.save=true
+                        this.gKeepsForClass.save=true
+                        var books= keepsService.getNotes();
+                        keepsService.saveAllKeeps(books)
+                        setTimeout(()=>{
+                            this.gKeepsForClass.save=false
+                            this.gKeepsGenerator.save=false
+                             }, 3000);
+                        console.log('save alll keeps to localStorage from app')
+                        break;
                     default:
                       // code block
                   }
@@ -219,35 +251,8 @@ export default {
 
             },
  
-         //   },
-            saveKeeps() {
-    
-                //    let  notes ={
-                //         keep1 : this.note1,
-                //         keep2 : this.note2,
-                //         keep3 : this.note3,
-                //     }
-                //     keeps.push(note1)
-                // this.keepsArr.forEach(element => {
-                //     keepsArr
-                // });
-                this.keepsArr[0] = this.keep1;
-                this.keepsArr[1] = this.keep2;
-                this.keepsArr[2] = this.keep3;
-    
-                console.log('save button clicked to save Keeps', this.keepsArr)
-                keepsService.saveAllKeeps(this.keepsArr);
-    
-            },
-            // loadKeeps() {
-            //     var keepsArr = keepsService.getKeepList()
-            //         .then(DBkeepsArr => {
-            //             console.log('Keeps from service in keep app after promis', DBkeepsArr)
-            //             this.keep1 = DBkeepsArr[0][0];
-            //             this.keep2 = DBkeepsArr[0][1];
-            //             this.keep3 = DBkeepsArr[0][2];
-            //         })
-            // },
+   
+
 
     },
     computed: {
