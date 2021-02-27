@@ -1,12 +1,12 @@
 import { mailService } from '../services/mail.service.js'
 import mailFilter from '../cmps/mail-filter.cmp.js'
 import mailList from '../cmps/mail-list.cmp.js'
-
+import { eventBus } from '../services/event-bus-service.js'
 export default {
     template: `
         <section class="mail-home-page">
             <mail-filter @filtered="setFilter" />
-            <mail-list :mails="mailsToShow" />
+            <mail-list :mails="mailsToShow" @removeMail="deleteMail"/>
         </section>
     `,
     data() {
@@ -25,6 +25,26 @@ export default {
                     this.mails = mails
                 })
         },
+        deleteMail(mailId) {
+            console.log(mailId);
+            mailService.remove(mailId)
+                .then(mail => {
+                    const msg = {
+                        txt: 'Mail removed successfully',
+                        type: 'success'
+                    }
+                    // eventBus.$emit('show-msg', msg);
+                    eventBus.$emit('reloadMails');
+                })
+                .catch(err => {
+                    console.log(err);
+                    const msg = {
+                        txt: 'Error, please try again later',
+                        type: 'error'
+                    }
+                    // eventBus.$emit('show-msg', msg)
+                })
+        },
     },
     computed: {
         mailsToShow() {
@@ -40,6 +60,10 @@ export default {
     },
     created() {
         this.loadMails()
+    },
+    mounted() {
+        eventBus.$on('reloadMails', this.loadMails);
+
     },
     components: {
         mailFilter,
