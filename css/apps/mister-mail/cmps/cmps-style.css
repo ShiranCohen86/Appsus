@@ -1,17 +1,17 @@
 .mail-app {
-    background-color: rgba(255,255,255,0.902);
+    background-color: rgba(255, 255, 255, 0.902);
     display: flex;
 }
 
 .mail-card.notRead {
-    background-color: rgba(242,245,245);
+    background-color: rgba(242, 245, 245);
 }
 
 .mail-preview.Read {
-  font-weight: bold;
+    font-weight: bold;
 }
 
-.mail-details-page{
+.mail-details-page {
     flex: 1;
 }
 
@@ -38,8 +38,11 @@
     height: 90vh;
 }
 
-.gallery-mails {
+.mail-home-page {
     flex: 1;
+}
+
+.gallery-mails {
     padding-inline-start: 10px;
     padding-inline-end: 10px;
     overflow: auto;
@@ -86,6 +89,7 @@
     opacity: 0.7;
     margin-inline-end: 20px;
 }
-ul{
+
+ul {
     padding-inline-start: 0;
 }

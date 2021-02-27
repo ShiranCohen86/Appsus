@@ -4,7 +4,7 @@ import mailList from '../cmps/mail-list.cmp.js'
 
 export default {
     template: `
-        <section class="inbox">
+        <section class="mail-home-page">
             <mail-filter @filtered="setFilter" />
             <mail-list :mails="mailsToShow" />
         </section>
