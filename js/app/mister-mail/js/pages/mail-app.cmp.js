@@ -33,6 +33,7 @@ export default {
             const mailsToShow = this.mails.filter(mail => {
                 return (mail.subject.toLowerCase().includes(searchStr)
                     || mail.body.toLowerCase().includes(searchStr))
+                    
 
             })
             return mailsToShow;

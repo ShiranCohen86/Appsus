@@ -160,3 +160,6 @@ p{
     margin-block-start: 0;
     margin-block-end: 0;
 }
+.mail-details p{
+    margin:100px;
+}
