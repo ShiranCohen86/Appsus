@@ -33,7 +33,7 @@ export default {
                         txt: 'Mail removed successfully',
                         type: 'success'
                     }
-                    // eventBus.$emit('show-msg', msg);
+                    eventBus.$emit('show-msg', msg);
                     eventBus.$emit('reloadMails');
                     eventBus.$emit('reloadingMails');
                 })
