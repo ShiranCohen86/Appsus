@@ -2,6 +2,7 @@ import { mailService } from '../services/mail.service.js'
 import mailFilter from '../cmps/mail-filter.cmp.js'
 import mailList from '../cmps/mail-list.cmp.js'
 import { eventBus } from '../services/event-bus-service.js'
+
 export default {
     template: `
         <section class="mail-home-page">
@@ -34,6 +35,7 @@ export default {
                     }
                     // eventBus.$emit('show-msg', msg);
                     eventBus.$emit('reloadMails');
+                    eventBus.$emit('reloadingMails');
                 })
                 .catch(err => {
                     console.log(err);
@@ -46,25 +48,26 @@ export default {
         setIsRead(mail) {
             mailService.save(mail)
                 .then(() => {
-                    // this.loadDetails();
                     const msg = {
                         // txt: `You Removed a review from ${this.book.title} book`,
                         type: 'success'
                     }
                     // eventBus.$emit('show-msg', msg);
                     eventBus.$emit('reloadMails');
+                    eventBus.$emit('reloadingMails');
+
                 });
 
         },
         changeStar(mail) {
             mailService.save(mail)
                 .then(() => {
-                    // this.loadDetails();
                     const msg = {
                         // txt: `You Removed a review from ${this.book.title} book`,
                         type: 'success'
                     }
                     eventBus.$emit('reloadMails');
+                    eventBus.$emit('reloadingMails');
                     // eventBus.$emit('show-msg', msg);
                 });
 

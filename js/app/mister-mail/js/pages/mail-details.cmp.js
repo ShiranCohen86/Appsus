@@ -1,7 +1,6 @@
 import { eventBus } from '../services/event-bus-service.js'
 import { mailService } from '../services/mail.service.js'
 
-
 export default {
     template: `
            <section class="mail-details">
@@ -26,6 +25,7 @@ export default {
                     }
                     // eventBus.$emit('show-msg', msg);
                     eventBus.$emit('reloadMails');
+                    eventBus.$emit('reloadingMails');
                 })
                 .catch(err => {
                     console.log(err);
@@ -44,11 +44,8 @@ export default {
     },
     created() {
         this.loadMailDetails();
-        // eventBus.on('mailById', loadMailDetails)
     },
-    component: {
-        mailService
-    },
+
     
 
 }

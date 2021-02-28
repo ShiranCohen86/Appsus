@@ -1,17 +1,21 @@
 import mailPreview from '../cmps/mail-preview.cmp.js'
 import mailFilter from './mail-filter.cmp.js'
 import { eventBus } from '../services/event-bus-service.js'
+import longText from './long-text.cmp.js'
 
 export default {
     props: ['mails'],
     template: `
     <ul class="gallery-mails">
-        <li v-for="mail in mails" :key="mail.id" class="mail-card" :class="{notRead : mail.isRead}">
-            <img class="read-logo" :src="mail.isRead ? openMailSrc : closeMailSrc" @click="changeRead(mail)"/>
-            <img class="star-logo" :src="mail.isStarred ? starredSrc : starSrc" @click="changeStar(mail)"/>
-            <router-link :to="'/mister-mail/'+mail.id" @click.native="changeRead(mail)">Mail Details</router-link>
-            <img class="bin-logo" src="css/apps/mister-mail/img/bin.png" @click="deleteMail(mail.id)"/>
-            <mail-preview :mail="mail" />
+        <li v-for="mail in mails" :key="mail.id"  :class="{notRead : mail.isRead}">
+            <router-link :to="'/mister-mail/'+mail.id" @click.native="changeRead(mail)" class="mail-card" >
+                <img class="read-logo" :src="mail.isRead ? openMailSrc : closeMailSrc" @click="changeRead(mail)"/>
+                <img class="star-logo" :src="mail.isStarred ? starredSrc : starSrc" @click="changeStar(mail)"/>
+                <mail-preview :mail="mail" />
+                <!-- <long-text  :txt="mail.body" /> -->
+                <!-- <router-link :to="'/mister-mail/'+mail.id" @click.native="changeRead(mail)">Mail Details</router-link> -->
+                <img class="bin-logo" src="css/apps/mister-mail/img/bin.png" @click="deleteMail(mail.id)"/>
+            </router-link>
         </li>
     </ul>
     `,
@@ -28,12 +32,10 @@ export default {
         changeRead(mail) {
             mail.isRead = !mail.isRead
             this.$emit('setIsRead', mail)
-            eventBus.$emit('reloadingMails');
         },
         changeStar(mail) {
             mail.isStarred = !mail.isStarred
             this.$emit('setIsStarred', mail)
-            eventBus.$emit('reloadingMails');
         },
         deleteMail(mailId) {
             this.$emit('removeMail', mailId)
@@ -42,6 +44,7 @@ export default {
     components: {
         mailPreview,
         mailFilter,
-        eventBus
+        eventBus,
+        longText
     }
 }
