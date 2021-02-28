@@ -6,7 +6,7 @@ export default {
     template: `
         <section class="mail-home-page">
             <mail-filter @filtered="setFilter" />
-            <mail-list :mails="mailsToShow" @removeMail="deleteMail" @setIsRead="setIsRead" @setIsStarred="changeStar"/>
+            <mail-list :mails="mailsToShow" @removeMail="deleteMail" @setRead="setIsRead" @setIsStarred="changeStar"/>
         </section>
     `,
     data() {
@@ -41,7 +41,6 @@ export default {
                         txt: 'Error, please try again later',
                         type: 'error'
                     }
-                    // eventBus.$emit('show-msg', msg)
                 })
         },
         setIsRead(mail) {
@@ -53,6 +52,7 @@ export default {
                         type: 'success'
                     }
                     // eventBus.$emit('show-msg', msg);
+                    this.loadMails;
                 });
 
         },
@@ -64,12 +64,11 @@ export default {
                         // txt: `You Removed a review from ${this.book.title} book`,
                         type: 'success'
                     }
+                    this.loadMails;
                     // eventBus.$emit('show-msg', msg);
                 });
 
         }
-
-
     },
     computed: {
         mailsToShow() {
@@ -84,9 +83,10 @@ export default {
     },
     created() {
         this.loadMails()
-    },
-    mounted() {
         eventBus.$on('reloadMails', this.loadMails);
+    },
+    destroyed() {
+        eventBus.$off('reloadMails', this.loadMails);
     },
     components: {
         mailFilter,

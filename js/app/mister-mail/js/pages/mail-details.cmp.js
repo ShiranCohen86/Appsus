@@ -4,24 +4,37 @@ import { mailService } from '../services/mail.service.js'
 
 export default {
     template: `
-    <section class="mail-details-page">
-
-        <!-- <button @click="remove(mail.id)">x</button> -->
-        <section class="mail-details">
-            <router-link to="/mister-mail" @click.native="remove(mail.id)">Delete Mail</router-link>
-            {{mail.body}} 
-            {{mail.sentAt}} 
+           <section class="mail-details">
+            <h2>{{mail.subject}}</h2>
+            <p>{{mail.body}}</p>
+            <p>Sent at: {{mail.sentAt}}</p> 
+            <router-link to="/mister-mail" @click.native="deleteMail(mail.id)">Delete Mail</router-link>
         </section>
-    </section>
-    `,
+      `,
     data() {
         return {
             mail: '',
         }
     },
     methods: {
-        remove(mailId) {
-            eventBus.$emit('deleteMail', mailId)
+        deleteMail(mailId) {
+            mailService.remove(mailId)
+                .then(mail => {
+                    const msg = {
+                        txt: 'Mail removed successfully',
+                        type: 'success'
+                    }
+                    // eventBus.$emit('show-msg', msg);
+                    eventBus.$emit('reloadMails');
+                })
+                .catch(err => {
+                    console.log(err);
+                    const msg = {
+                        txt: 'Error, please try again later',
+                        type: 'error'
+                    }
+                    // eventBus.$emit('show-msg', msg)
+                })
         },
         loadMailDetails() {
             const id = this.$route.params.mailId
@@ -35,6 +48,7 @@ export default {
     },
     component: {
         mailService
-    }
+    },
+    
 
 }
