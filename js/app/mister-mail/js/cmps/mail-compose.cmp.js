@@ -5,7 +5,9 @@ export default {
     template: `
         <section class="compose-container">
             <form class="mail-submit">
+                
                 <input type=text placeholder="Subject" v-model="mail.subject"/>
+               
                 <router-link to="/mister-mail" @click.native.prevent="addMail">Send Mail</router-link>
             </form> 
         </section>
