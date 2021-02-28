@@ -6,7 +6,7 @@ export default {
     template: `
         <section class="mail-home-page">
             <mail-filter @filtered="setFilter" />
-            <mail-list :mails="mailsToShow" @removeMail="deleteMail" @setRead="setIsRead" @setIsStarred="changeStar"/>
+            <mail-list :mails="mailsToShow" @removeMail="deleteMail" @setIsRead="setIsRead" @setIsStarred="changeStar"/>
         </section>
     `,
     data() {
@@ -52,7 +52,7 @@ export default {
                         type: 'success'
                     }
                     // eventBus.$emit('show-msg', msg);
-                    this.loadMails;
+                    eventBus.$emit('reloadMails');
                 });
 
         },
@@ -64,7 +64,7 @@ export default {
                         // txt: `You Removed a review from ${this.book.title} book`,
                         type: 'success'
                     }
-                    this.loadMails;
+                    eventBus.$emit('reloadMails');
                     // eventBus.$emit('show-msg', msg);
                 });
 

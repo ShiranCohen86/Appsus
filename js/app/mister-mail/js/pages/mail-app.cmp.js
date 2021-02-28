@@ -40,9 +40,11 @@ export default {
     },
     created() {
         this.loadMails()
+        eventBus.$on('reloadingMails', this.loadMails);
     },
-
-
+    destroyed() {
+        eventBus.$off('reloadingMails', this.loadMails);
+    },
     components: {
         mailSideMenu,
         eventBus
