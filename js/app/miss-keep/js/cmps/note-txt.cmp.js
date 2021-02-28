@@ -5,7 +5,8 @@ export default {
                 <!-- <div  class=" " v-for="keep in keepsArrDb"  > -->
                 <textarea class="note-txt round"   v-model="txt" :style="styleObject"></textarea>
                 <div  class="Notes-Variations-buttons-container flex ">
-                    <button class="delet-Butoon round"  @click.prevent="saveKeeps()" > Save</button>
+                    <!-- <button class="delet-Butoon round"  @click.prevent="saveKeeps()" > Save</button> -->
+                    <input class="txtcol delet-Butoon round" placeholder="xxxxxx" type="color" id="stroke-color" name="colorTxt" form="test" @change="updateFontColor( $event)" /> 
                     <input class="txtcol delet-Butoon round"  type="color" id="stroke-color" name="colorTxt" form="test" @change="updateEditorColor( $event)" /> 
                     <button  class="delet-Butoon round" @click.prevent="deleteKeep()" > Delete</button>
                 </div>

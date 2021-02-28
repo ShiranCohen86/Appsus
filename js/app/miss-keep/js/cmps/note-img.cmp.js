@@ -7,11 +7,11 @@ export default {
                   <!-- <div contenteditable="true"  class="div-img-container">   -->
                      <div class="flex flex-direction-column" >
                          <img  class="image  "  :src="myImage" width="200" height="200">
-                         <textarea class="note-txt-img "  :style="styleObject" ></textarea>
+                         <textarea class="note-txt-img "  :style="styleObject" v-model="txt" ></textarea>
                     </div>
                         <!-- </div> -->
                                          
-                             <button class="delet-Butoon round"   >Save </button>
+                             <!-- <button class="delet-Butoon round"   >Save </button> -->
                              <button class="delet-Butoon round"  @click.prevent="deleteKeep()"> Delet</button>
                              <input class="txtcol delet-Butoon round"  type="color" id="stroke-color" name="colorTxt" form="test" @change="updateFontColor( $event)" /> 
                     <input class="txtcol delet-Butoon round"  type="color" id="stroke-color" name="colorTxt" form="test" @change="updateEditorColor( $event)" /> 
@@ -26,7 +26,8 @@ export default {
   props: ['info'],
     data() {
         return {
-                myImage :  "img/img9.jpg",
+                txt :  null,
+                myImage :  "img/finish.jpg",
                 // myImage :  "js/app/miss-keep/js/cmps/keepImg/finish.jpg",
                 // myImage : "https://www.coding-academy.org/books-photos/8.jpg",
                 styleObject: {
@@ -45,6 +46,10 @@ export default {
 
         
     },
+    mounted() {
+        console.log('info on note-txtx component',this.info)
+        this.txt=this.info.info.title   
+     },
     methods: {
         uploadImage(e){
           

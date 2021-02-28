@@ -179,7 +179,7 @@ export default {
                     type: "noteImg",
                     info: {
                       url: "https://www.coding-academy.org/books-photos/8.jpg",
-                       title: "Me playing Mi"
+                       title: this.notesVariations
                     },
                     style: {
                     backgroundColor: "#00d"
@@ -208,7 +208,7 @@ export default {
             }
 
             if( (( !this.notesVariations)&&(!this.gKeepsForClass.isTxt)&&(!this.gKeepsForClass.isTodos)&&(!this.gKeepsForClass.isImg)) ||( ( this.notesVariations)&&(!this.gKeepsForClass.isTxt)&&(!this.gKeepsForClass.isTodos)&&(!this.gKeepsForClass.isImg)) ){
-               alert(" you need to INSERT some text and CHOOSE the keep Style to Add an Keep !")                                        //<==============================================
+               alert(" you need to INSERT TEXT and then CHOOSE ONE OF THE OPTIONS Style to Add an Keep !")                                        //<==============================================
             }else{
 
                 this.gKeepsForClass.isTxt=false

@@ -10,7 +10,7 @@ export default {
                   <textarea class="note-todos round"   v-model="txt"  :style="styleObject"></textarea>
                   <div >
                   <div  class="Notes-Variations-buttons-container flex ">
-                             <button class="delet-Butoon round"   >Save </button>
+                             <!-- <button class="delet-Butoon round"   >Save </button> -->
                              <button class="delet-Butoon round" @click.prevent="deleteKeep()"> Delete</button>
                              <input class="txtcol delet-Butoon round"  type="color" id="stroke-color" name="colorTxt" form="test" @change="updateFontColor( $event)" /> 
                     <input class="txtcol delet-Butoon round"  type="color" id="stroke-color" name="colorTxt" form="test" @change="updateEditorColor( $event)" /> 
