@@ -2,14 +2,25 @@ import {keepsService} from  '../services/miss-keep.service.js';
 import noteTxt from '../cmps/note-txt.cmp.js'
 import noteTodos from '../cmps/note-todos.cmp.js'
 import noteImg from '../cmps/note-img.cmp.js'
+// import { ColourPicker } from 'vue-colour-picker'
 
 // @import url("./apps/miss-keep/miss-keep.main.css");
 
 export default {
     template: `
         <section class=" keep-app">
+
+
+                                    <!-- <v-color-picker
+                            dot-size="25"
+                            swatches-max-height="200"
+                            ></v-color-picker> -->
+
+        <!-- <span hidden  v-bind:class="{alertAdd  : showAlert }">choos keep first </span> -->
             <div class="main-container flex justify-content-center" >
 
+
+        
 
                         <!-- <div contenteditable="true"  class=" Notes-Variations round flex  justify-content-flex-end "   v-model="notesVariations"  placeholder="Take a Note..."> -->
                     
@@ -19,7 +30,7 @@ export default {
                         <button class="Notes-Variations-Button round text" @click.prevent="editContent(1)" v-bind:class="{opacity : gKeepsForClass.isTxt }"> text</button>
                         <button class="Notes-Variations-Button round todos" @click.prevent="editContent(2)" v-bind:class="{opacity : gKeepsForClass.isTodos }"> todos</button>
                         <button class="Notes-Variations-Button round img"  @click.prevent="editContent(3)" v-bind:class="{opacity : gKeepsForClass.isImg }"> img</button>
-                        <button class="Notes-Variations-Button round add"  @click.prevent="editContent(4)" v-bind:class="{opacity : gKeepsForClass.add }"> Add</button>
+                        <button class="Notes-Variations-Button round add"  @click.prevent="editContent(4)" v-bind:class="{opacity : gKeepsForClass.add }"> Add</button>  
                         <button class="Notes-Variations-Button round add"  @click.prevent="editContent(5)" v-bind:class="{opacity : gKeepsForClass.save }"> Save</button>
                     </div>
                        <!-- </div> -->
@@ -63,7 +74,8 @@ export default {
 
         data() {
             return {
-
+                colour: '#000000',
+                showAlert : false,
                 myComponents : {
                     isTxt : false,
                     isTodos : false, 
@@ -142,6 +154,7 @@ export default {
             creatNewNote(){
 
                 var keep=null; 
+
              if( this.gKeepsGenerator.isTxt){
                  console.log('creating text' )
                     keep = {
@@ -187,12 +200,18 @@ export default {
             }
 
             }
-            var books= keepsService.getNotes(); 
-            console.log('books ',books)
-            console.log(' new keep  after created',keep)
-            console.log('my text',this.notesVariations)
-            books.push(keep)
-            //console.log('books after push new Note ',books)
+
+            if(!this.notesVariations){
+               this.showAlert=true;                                          //<==============================================
+            }else{
+                this.showAlert=false;
+                var books= keepsService.getNotes(); 
+                console.log('books ',books)
+                console.log(' new keep  after created',keep)
+                console.log('my text',this.notesVariations)
+                books.push(keep)
+                //console.log('books after push new Note ',books)
+            }
 
             },
 
@@ -313,7 +332,7 @@ export default {
         noteTxt,
         noteTodos,
         noteImg,
-            
+        //  'colour-picker': ColourPicker,
 
     },
 }

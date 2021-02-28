@@ -4,9 +4,12 @@ export default {
      <div  class=" ">            
           
                 
-                  <div contenteditable="true" >  
-                        <img  class="image round "  src="https://www.coding-academy.org/books-photos/8.jpg"  width="200" height="200">
-                 </div>
+                  <!-- <div contenteditable="true"  class="div-img-container">   -->
+                     <div class="flex flex-direction-column">
+                         <img  class="image  "  src="https://www.coding-academy.org/books-photos/8.jpg"  width="200" height="200">
+                         <textarea class="note-txt-img "  ></textarea>
+                    </div>
+                        <!-- </div> -->
                                          
                              <button class="delet-Butoon round"   >Save </button>
                              <button class="delet-Butoon round"  @click.prevent="deleteKeep()"> Delet</button>
