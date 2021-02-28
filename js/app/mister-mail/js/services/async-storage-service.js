@@ -54,7 +54,6 @@ function remove(entityType, entityId) {
             const idx = entities.findIndex(entity => entity.id === entityId);
             entities.splice(idx, 1)
             _save(entityType, entities)
-            console.log('delete');
         })
 }
 

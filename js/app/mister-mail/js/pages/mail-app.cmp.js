@@ -33,6 +33,7 @@ export default {
             const mailsToShow = this.mails.filter(mail => {
                 return (mail.subject.toLowerCase().includes(searchStr)
                     || mail.body.toLowerCase().includes(searchStr))
+                    
 
             })
             return mailsToShow;
@@ -40,9 +41,11 @@ export default {
     },
     created() {
         this.loadMails()
+        eventBus.$on('reloadingMails', this.loadMails);
     },
-
-
+    destroyed() {
+        eventBus.$off('reloadingMails', this.loadMails);
+    },
     components: {
         mailSideMenu,
         eventBus

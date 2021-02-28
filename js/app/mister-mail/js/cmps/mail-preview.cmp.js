@@ -1,14 +1,15 @@
+import longText from './long-text.cmp.js'
+
 export default {
     props: ['mail'],
     template: `
-    <section class="mail-preview" :class="{Read : !mail.isRead}">
+    <section class="mail-preview">
             <p>{{mail.subject}}</p>
+            <long-text :txt="mail.body" />
     </section>
     `,
-    methods: {
-        deleteMail(mailId) {
-            eventBus.$emit('deleteMail', mailId)
-        }
-    },
+    components:{
+        longText
+    }
 }
 
