@@ -27,7 +27,7 @@ var gNotes = [
      type: "noteTxt",
     isPinned: true,
     info: {
-       txt: "Fullstack Me Baby !"
+       txt: "Hello There !"
        
        }
  },
@@ -39,7 +39,7 @@ var gNotes = [
        label: "How was it:",
        todos: [
          { 
-             txt: "Do that",
+             txt: "What Am I Doing Today ?",
              doneAt: null 
          },
          { 

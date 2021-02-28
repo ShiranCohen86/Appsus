@@ -123,10 +123,22 @@ min-height: 30vh;
 .delet-Butoon:hover {
     opacity: 0.9;
   }
+.file-Butoon:hover {
+    opacity: 0.9;
+  }
 .delet-Butoon{
     border-radius: 10px;
     border:1px solid rgb(248, 246, 246);
     width: 60px;
+    height: 25px;
+    background-color: rgb(229, 183, 238);
+    box-shadow: 5px 5px 5px 5px  #888888be;
+    opacity: 0.1;
+}
+.file-Butoon{
+    border-radius: 10px;
+    border:1px solid rgb(248, 246, 246);
+    width: 95px;
     height: 25px;
     background-color: rgb(229, 183, 238);
     box-shadow: 5px 5px 5px 5px  #888888be;

@@ -41,7 +41,6 @@ export default {
 
 
 
-
                  <div v-for="(keep,idx)  in myKeeps">
                 
                     <component  :is="keep.type"  :info="keep" @deletNote="deleteComponent($event, idx)"> </component>
@@ -151,6 +150,13 @@ export default {
             // },
         },
         methods: {
+            color(test){
+            console.log('this color', test)
+            },
+
+         
+                
+                
             creatNewNote(){
 
                 var keep=null; 
@@ -201,9 +207,14 @@ export default {
 
             }
 
-            if(!this.notesVariations){
-               this.showAlert=true;                                          //<==============================================
+            if( (( !this.notesVariations)&&(!this.gKeepsForClass.isTxt)&&(!this.gKeepsForClass.isTodos)&&(!this.gKeepsForClass.isImg)) ||( ( this.notesVariations)&&(!this.gKeepsForClass.isTxt)&&(!this.gKeepsForClass.isTodos)&&(!this.gKeepsForClass.isImg)) ){
+               alert(" you need to INSERT some text and CHOOSE the keep Style to Add an Keep !")                                        //<==============================================
             }else{
+
+                this.gKeepsForClass.isTxt=false
+                this.gKeepsForClass.isTodos=false
+                this.gKeepsForClass.isImg=false
+
                 this.showAlert=false;
                 var books= keepsService.getNotes(); 
                 console.log('books ',books)
@@ -275,9 +286,9 @@ export default {
                         console.log('isImg',this.gKeepsGenerator.isImg)
                         break;
                     case 4:
-                        this.gKeepsForClass.isTxt=false
-                         this.gKeepsForClass.isTodos=false
-                        this.gKeepsForClass.isImg=false
+                        // this.gKeepsForClass.isTxt=false
+                        //  this.gKeepsForClass.isTodos=false
+                        // this.gKeepsForClass.isImg=false
                         this.gKeepsGenerator.add=true 
                         this.gKeepsForClass.add=true
                         this.gKeepsGenerator.save=false
