@@ -11,8 +11,9 @@ li.notRead {
 }
 
 .long-text p{
-    font-size: 12px;
+    font-size: 14px;
 }
+
 .mail-preview {
     display: flex;
     flex: 1;

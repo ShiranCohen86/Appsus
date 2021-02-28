@@ -8,13 +8,11 @@ export default {
     template: `
     <ul class="gallery-mails">
         <li v-for="mail in mails" :key="mail.id"  :class="{notRead : mail.isRead}">
-            <router-link :to="'/mister-mail/'+mail.id" @click.native="changeRead(mail)" class="mail-card" >
-                <img class="read-logo" :src="mail.isRead ? openMailSrc : closeMailSrc" @click="changeRead(mail)"/>
-                <img class="star-logo" :src="mail.isStarred ? starredSrc : starSrc" @click="changeStar(mail)"/>
+            <router-link :to="'/mister-mail/'+mail.id" @click..prevent.stop="changeRead(mail)" class="mail-card" >
+                <img class="read-logo" :src="mail.isRead ? openMailSrc : closeMailSrc" @click.prevent.stop="changeRead(mail)"/>
+                <img class="star-logo" :src="mail.isStarred ? starredSrc : starSrc" @click.prevent.stop="changeStar(mail)"/>
                 <mail-preview :mail="mail" />
-                <!-- <long-text  :txt="mail.body" /> -->
-                <!-- <router-link :to="'/mister-mail/'+mail.id" @click.native="changeRead(mail)">Mail Details</router-link> -->
-                <img class="bin-logo" src="css/apps/mister-mail/img/bin.png" @click="deleteMail(mail.id)"/>
+                <img class="bin-logo" src="css/apps/mister-mail/img/bin.png" @click..prevent.stop="deleteMail(mail.id)"/>
             </router-link>
         </li>
     </ul>
