@@ -5,7 +5,7 @@ import { eventBus } from '../services/event-bus-service.js';
 export default {
     template: `
         <section class="mail-app">
-            <mail-side-menu/>
+            <mail-side-menu :mails="mails"/>
             <router-view/>
         </section>
     `,
@@ -25,9 +25,6 @@ export default {
                     this.mails = mails
                 })
         },
-        deleteMail(mailId) {
-
-        }
     },
     computed: {
         mailsToShow() {
@@ -44,6 +41,8 @@ export default {
     created() {
         this.loadMails()
     },
+
+
     components: {
         mailSideMenu,
         eventBus

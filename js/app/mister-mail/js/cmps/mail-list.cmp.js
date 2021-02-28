@@ -1,6 +1,6 @@
 import mailPreview from '../cmps/mail-preview.cmp.js'
 import mailFilter from './mail-filter.cmp.js'
-import {eventBus} from '../services/event-bus-service.js'
+import { eventBus } from '../services/event-bus-service.js'
 
 export default {
     props: ['mails'],
@@ -27,14 +27,13 @@ export default {
     methods: {
         changeRead(mail) {
             mail.isRead = !mail.isRead
-            if (!mail.isRead){
-                this.$emit('setIsRead', mail)
-                eventBus.$emit('reloadMails');
-            } 
+            this.$emit('setIsRead', mail)
+            // eventBus.$emit('reloadMails');
         },
         changeStar(mail) {
             mail.isStarred = !mail.isStarred
             this.$emit('setIsStarred', mail)
+            // eventBus.$emit('reloadMails');
 
         },
         deleteMail(mailId) {

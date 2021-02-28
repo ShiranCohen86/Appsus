@@ -33,9 +33,9 @@
     display: flex;
     flex-direction: column;
     background-color: #eeeeee;
-    justify-content: center;
     min-width: 200px;
-    height: 90vh;
+    height: 80vh;
+    padding-block-start: 100px;
 }
 
 .mail-home-page {
@@ -46,9 +46,11 @@
     padding-inline-start: 10px;
     padding-inline-end: 10px;
     overflow: auto;
+    margin-block-start: 0;
     margin-block-end: 0;
     display: flex;
     flex-direction: column;
+    max-height: 80vh;
 }
 
 .mail-card {
@@ -57,12 +59,13 @@
     border-top: 1px solid lightgrey;
     padding: 10px;
     background-color: #ffffff;
-    gap: 10px;
+    gap: 20px;
+    border-radius: 10px;
 }
 
 .mail-card:hover {
     box-shadow: 5px 10px 10px 10px #888888be;
-    border: 1px solid grey;
+    border: 3px solid grey;
 }
 
 .read-logo {
@@ -87,12 +90,23 @@
     border-radius: 10px;
     outline: none;
     height: 50px;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 0 10px 5px 10px;
+    opacity: 0.6;
 }
-.inbox-btn:hover, .star-btn:hover, .sent-btn:hover{
+.sent-btn{
+    justify-content: start;
+}
+.sent-btn p{
+    margin: 40px;
+}
+
+.compose-btn:hover, .inbox-btn:hover, .star-btn:hover, .sent-btn:hover{
     box-shadow: 5px 10px 10px 10px #888888be;
     border: 1px solid grey;
+    opacity: 1;
+    font-weight: bold;
+    background-color: #fce8e6;
 }
 
 .compose-btn {
@@ -100,9 +114,10 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    width: 50%;
     align-self: center;
     margin-block-end: 30px;
+    outline: none;
+
     
 }
 
