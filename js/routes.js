@@ -11,7 +11,7 @@ import mailHomePage from './app/mister-mail/js/pages/home-page.cmp.js'
 const routes = [
     {
         path: '/',
-        component: homePage,
+        component: misterMail,
     },
     // {
     //     path: '/58 or',
